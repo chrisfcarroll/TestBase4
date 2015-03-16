@@ -50,7 +50,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="AutoFixture\WhenICreateAnAutoFixture.cs" />
+    <Compile Include="AutoFixture\WhenYou_RunAFixtureTestingAClassWithNoConstructorParameters.cs" />
+    <Compile Include="AutoFixture\WhenYou_RunAFixtureTestingAClassWith1ConstructorParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
