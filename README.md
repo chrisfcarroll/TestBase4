@@ -1,5 +1,4 @@
 # TestBase4
-[![Build Status](http://cfc.us.to:8080/job/TestBase4/badge/icon)](http://cfc.us.to:8080/job/TestBase4/)
 
 Pre-alpha, under-construction.
 
