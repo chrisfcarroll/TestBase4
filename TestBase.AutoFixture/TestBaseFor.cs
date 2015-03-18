@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using NUnit.Framework;
 
@@ -25,6 +26,10 @@ namespace TestBase
             {
                 return typeof(string).Name;
             }
+            else if (type.IsAbstract || type.IsInterface)
+            {
+                return CreateInstanceByMakingUpParameters(FindConcreteTypeAssignableTo(type));
+            }
             else if (type.IsValueType || constructor==null || constructor.GetParameters().Length == 0)
             {
                 return Activator.CreateInstance(type);
@@ -36,6 +41,24 @@ namespace TestBase
                             .ToArray();
                 return Activator.CreateInstance(type, pars);
             }
+        }
+
+        protected internal Type FindConcreteTypeAssignableTo(Type type)
+        {
+            var result=this.GetType()
+                .GetCustomAttributes(typeof (AutoFixtureStrategyAttribute), inherit: true)
+                .Cast<AutoFixtureStrategyAttribute>()
+                .Select(r => r.FindTypeAssignableTo(type))
+                .FirstOrDefault(t => t != null);
+
+            Debug.Assert(result!=null,
+                "Failed to find a Type assignable to " + type.FullName + " using rules " 
+                    + string.Join(", ", 
+                        this.GetType()
+                            .GetCustomAttributes(typeof (AutoFixtureStrategyAttribute), inherit: true)
+                            .Cast<AutoFixtureStrategyAttribute>()
+                            .ToArray().Select(r=>r.GetType().Name)));
+            return result;
         }
     }
 }

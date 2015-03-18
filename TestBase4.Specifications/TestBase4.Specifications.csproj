@@ -50,8 +50,12 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="AutoFixture\WhenYou_RunAFixtureTestingAClassWithNoConstructorParameters.cs" />
-    <Compile Include="AutoFixture\WhenYou_RunAFixtureTestingAClassWith1ConstructorParam.cs" />
+    <Compile Include="AutoFixture\TestTypes\INterface.cs" />
+    <Compile Include="AutoFixture\ForTypeWithAbstractConstructorDependencies\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest.cs" />
+    <Compile Include="AutoFixture\ForTypeWithConcreteConstructorDependencies\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest.cs" />
+    <Compile Include="AutoFixture\TestTypes\ClassWithDefaultConstructor.cs" />
+    <Compile Include="AutoFixture\TestTypes\ClassWith1ConstructorParam.cs" />
+    <Compile Include="AutoFixture\WhenYou_RunATextFixtureForTypeWithNoConstructorDependencies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +67,7 @@
       <Name>TestBase.AutoFixture</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
