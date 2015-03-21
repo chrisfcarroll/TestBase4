@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using TestBase;
-using TestBase4.Specifications.AutoFixture.TestTypes;
+using TestBase4.Specifications.TestData;
 
-namespace TestBase4.Specifications.AutoFixture.ForTypeWithConcreteConstructorDependencies
+namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest.ForTypeWithConcreteConstructorDependencies
 {
     public class WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest
     {

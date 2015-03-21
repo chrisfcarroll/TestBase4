@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBase4.Specifications", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBase.AutoFixture", "TestBase.AutoFixture\TestBase.AutoFixture.csproj", "{46D09587-1AED-47BE-AC4F-4B46FFF151FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBase4.Specifications.AReferencedAssembly", "TestBase4.Specifications.AReferencedAssembly\TestBase4.Specifications.AReferencedAssembly.csproj", "{3B4AC72B-BE1D-442B-B769-E7F7C7011FAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBase4.Specifications.ReferencedAssembly2", "TestBase4.Specifications.ReferencedAssembly2\TestBase4.Specifications.ReferencedAssembly2.csproj", "{4FB6FAE2-E62F-4D7C-8A06-041D07856A98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{46D09587-1AED-47BE-AC4F-4B46FFF151FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46D09587-1AED-47BE-AC4F-4B46FFF151FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46D09587-1AED-47BE-AC4F-4B46FFF151FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B4AC72B-BE1D-442B-B769-E7F7C7011FAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B4AC72B-BE1D-442B-B769-E7F7C7011FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B4AC72B-BE1D-442B-B769-E7F7C7011FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B4AC72B-BE1D-442B-B769-E7F7C7011FAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FB6FAE2-E62F-4D7C-8A06-041D07856A98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FB6FAE2-E62F-4D7C-8A06-041D07856A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FB6FAE2-E62F-4D7C-8A06-041D07856A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB6FAE2-E62F-4D7C-8A06-041D07856A98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
 using TestBase;
-using TestBase4.Specifications.AutoFixture.TestTypes;
+using TestBase4.Specifications.TestData;
 
-namespace TestBase4.Specifications.AutoFixture
+namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest
 {
     [TestFixture]
-    class WhenYou_RunATextFixtureForTypeWithNoConstructorDependencies : TestBaseFor<ClassWithDefaultConstructor>
+    class Given_TypeWithNoConstructorDependencies : TestBaseFor<ClassWithDefaultConstructor>
     {
         [Test]
         public void ThenI_SetUnitUnderTestToAnInstanceOfT()

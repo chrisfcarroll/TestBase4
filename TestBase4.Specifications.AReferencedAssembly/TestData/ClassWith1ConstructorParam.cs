@@ -1,4 +1,4 @@
-﻿namespace TestBase4.Specifications.AutoFixture.TestTypes
+﻿namespace TestBase4.Specifications.AReferencedAssembly.TestData
 {
     class ClassWith1ConstructorParam<T>
     {

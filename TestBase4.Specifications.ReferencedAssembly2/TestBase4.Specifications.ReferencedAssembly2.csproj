@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{46D09587-1AED-47BE-AC4F-4B46FFF151FC}</ProjectGuid>
+    <ProjectGuid>{4FB6FAE2-E62F-4D7C-8A06-041D07856A98}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestBase</RootNamespace>
-    <AssemblyName>TestBase.AutoFixture</AssemblyName>
+    <RootNamespace>TestBase4.Specifications.ReferencedAssembly2</RootNamespace>
+    <AssemblyName>TestBase4.Specifications.ReferencedAssembly2</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,8 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\TestBase.AutoFixture.XML</DocumentationFile>
-    <NoWarn>1574,1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,14 +28,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\TestBase.AutoFixture.XML</DocumentationFile>
-    <NoWarn>1574,1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,14 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoFixtureStrategyAttribute.cs" />
-    <Compile Include="FindInSameAssemblyAttribute.cs" />
-    <Compile Include="FindInSameOrReferencedAssemblies.cs" />
-    <Compile Include="TestBaseFor.cs" />
+    <Compile Include="NterfaceWithClassInReferencedAssembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\TestBase4.Specifications.AReferencedAssembly\TestBase4.Specifications.AReferencedAssembly.csproj">
+      <Project>{3B4AC72B-BE1D-442B-B769-E7F7C7011FAD}</Project>
+      <Name>TestBase4.Specifications.AReferencedAssembly</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using NUnit.Framework;
@@ -19,8 +20,9 @@ namespace TestBase
             UnitUnderTest = (T)CreateInstanceByMakingUpParameters(typeof(T));
         }
 
-        protected internal object CreateInstanceByMakingUpParameters(Type type)
+        protected internal object CreateInstanceByMakingUpParameters(Type type, IEnumerable<Type> inOrderToBuildTypes= null)
         {
+            inOrderToBuildTypes = (inOrderToBuildTypes ?? new List<Type>()).Union(new []{this.GetType(), type});
             var constructor = type.GetConstructors().FirstOrDefault();
             if (type == typeof (string))
             {
@@ -28,7 +30,7 @@ namespace TestBase
             }
             else if (type.IsAbstract || type.IsInterface)
             {
-                return CreateInstanceByMakingUpParameters(FindConcreteTypeAssignableTo(type));
+                return CreateInstanceByMakingUpParameters(FindConcreteTypeAssignableTo(type, inOrderToBuildTypes));
             }
             else if (type.IsValueType || constructor==null || constructor.GetParameters().Length == 0)
             {
@@ -43,12 +45,12 @@ namespace TestBase
             }
         }
 
-        protected internal Type FindConcreteTypeAssignableTo(Type type)
+        protected internal Type FindConcreteTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes)
         {
             var result=this.GetType()
                 .GetCustomAttributes(typeof (AutoFixtureStrategyAttribute), inherit: true)
                 .Cast<AutoFixtureStrategyAttribute>()
-                .Select(r => r.FindTypeAssignableTo(type))
+                .Select(r => r.FindTypeAssignableTo(type,inOrderToBuildTypes))
                 .FirstOrDefault(t => t != null);
 
             Debug.Assert(result!=null,
