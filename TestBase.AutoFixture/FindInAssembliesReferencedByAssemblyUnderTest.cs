@@ -18,7 +18,7 @@ namespace TestBase
     /// need in under to construct that Type under test.</item>
     /// </list>
     /// </summary>
-    public class FindInAssemblyUnderTestOrReferencedAssemblies : AutoFixtureStrategyAttribute
+    public class FindInAssembliesReferencedByAssemblyUnderTest : AutoFixtureStrategyAttribute
     {
         static readonly string[] DefaultIgnores = { "mscorlib", "System", "nunit", "Microsoft.VisualStudio", "Moq" };
 
@@ -31,24 +31,23 @@ namespace TestBase
         {
             var assembliesToIgnore = (IgnoreAssembliesWhereNameStartsWith ?? new string[0]).Union(DefaultIgnores);
 
-            var typeInSameAssembly = new FindInAssemblyUnderTestAttribute().FindTypeAssignableTo(type,inOrderToBuildTypes);
-
-            var assemblyNamesToSearch=
+            var assemblyNamesToSearch =
                     inOrderToBuildTypes
-                        .SelectMany(t=>t.Assembly.GetReferencedAssemblies())
+                        .SelectMany(t => t.Assembly.GetReferencedAssemblies())
                         .Where(a => !assembliesToIgnore.Any(n => a.FullName.StartsWith(n)));
 
-            var allTypesInReferencedAssemblies = assemblyNamesToSearch
-                .Select(name => Assembly.Load(name))
-                .SelectMany(a => a.GetTypes());
+            var allTypesInReferencedAssemblies = 
+                    assemblyNamesToSearch
+                        .Select(name => Assembly.Load(name))
+                        .SelectMany(a => a.GetTypes());
 
-            var relevantTypes = 
+            var relevantTypes =
                     allTypesInReferencedAssemblies.Where(
-                            t => !t.IsAbstract 
-                              && !t.IsInterface 
-                              && type.IsAssignableFrom(t));
+                        t => !t.IsAbstract
+                             && !t.IsInterface
+                             && type.IsAssignableFrom(t));
 
-            return typeInSameAssembly ?? relevantTypes.FirstOrDefault();
+            return relevantTypes.FirstOrDefault();
         }
     }
 }

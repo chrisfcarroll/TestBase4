@@ -22,7 +22,7 @@ namespace TestBase
 
         protected internal object CreateInstanceByMakingUpParameters(Type type, IEnumerable<Type> inOrderToBuildTypes= null)
         {
-            inOrderToBuildTypes = (inOrderToBuildTypes ?? new List<Type>()).Union(new []{this.GetType(), type});
+            inOrderToBuildTypes = (inOrderToBuildTypes ?? new List<Type>{typeof(T)}).Union(new []{type});
             var constructor = type.GetConstructors().FirstOrDefault();
             if (type == typeof (string))
             {
@@ -53,7 +53,8 @@ namespace TestBase
                 .Select(r => r.FindTypeAssignableTo(type,inOrderToBuildTypes))
                 .FirstOrDefault(t => t != null);
 
-            Debug.Assert(result!=null,
+            Assert.NotNull(
+                result,
                 "Failed to find a Type assignable to " + type.FullName + " using rules " 
                     + string.Join(", ", 
                         this.GetType()

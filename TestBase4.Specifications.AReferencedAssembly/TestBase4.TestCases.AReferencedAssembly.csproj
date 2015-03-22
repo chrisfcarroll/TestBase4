@@ -7,8 +7,8 @@
     <ProjectGuid>{3B4AC72B-BE1D-442B-B769-E7F7C7011FAD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestBase4.Specifications.AReferencedAssembly</RootNamespace>
-    <AssemblyName>TestBase4.Specifications.AReferencedAssembly</AssemblyName>
+    <RootNamespace>TestBase4.TestCases.AReferencedAssembly</RootNamespace>
+    <AssemblyName>TestBase4.TestCases.AReferencedAssembly</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\TestBase4.Specifications.AReferencedAssembly.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\TestBase4.TestCases.AReferencedAssembly.xml</DocumentationFile>
     <NoWarn>1574,1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -30,7 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\TestBase4.Specifications.AReferencedAssembly.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\TestBase4.TestCases.AReferencedAssembly.xml</DocumentationFile>
     <NoWarn>1574,1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
@@ -40,12 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestData\INterfaceWithClassInReferencedAssembly.cs" />
+    <Compile Include="INterfaceWithClassInReferencedAssembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestData\ClassWith1ConstructorParam.cs" />
-    <Compile Include="TestData\ClassWithDefaultConstructor.cs" />
-    <Compile Include="TestData\INterface.cs" />
-    <Compile Include="TestData\INterfaceInSameSolution.cs" />
+    <Compile Include="INterfaceWithClassInTransitivelyReferencedAssembly.cs" />
+    <Compile Include="SomeOtherTypeInReferencedAssembly.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

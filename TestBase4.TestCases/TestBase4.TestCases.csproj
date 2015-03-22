@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{46D09587-1AED-47BE-AC4F-4B46FFF151FC}</ProjectGuid>
+    <ProjectGuid>{18172094-9B5F-4613-93C7-26B3144F1781}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestBase</RootNamespace>
-    <AssemblyName>TestBase.AutoFixture</AssemblyName>
+    <RootNamespace>TestBase4.TestCases</RootNamespace>
+    <AssemblyName>TestBase4.TestCases</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,8 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\TestBase.AutoFixture.XML</DocumentationFile>
-    <NoWarn>1574,1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,31 +28,28 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\TestBase.AutoFixture.XML</DocumentationFile>
-    <NoWarn>1574,1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoFixtureStrategyAttribute.cs" />
-    <Compile Include="FindInAssemblyUnderTestAttribute.cs" />
-    <Compile Include="FindInAssembliesReferencedByAssemblyUnderTest.cs" />
-    <Compile Include="TestBaseFor.cs" />
+    <Compile Include="ClassWith1ConstructorParam.cs" />
+    <Compile Include="ClassWithDefaultConstructor.cs" />
+    <Compile Include="ForceReferencesToReferencedAssemblies.cs" />
+    <Compile Include="INterface.cs" />
+    <Compile Include="INterfaceWithClassInSameAssembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\TestBase4.Specifications.AReferencedAssembly\TestBase4.TestCases.AReferencedAssembly.csproj">
+      <Project>{3b4ac72b-be1d-442b-b769-e7f7c7011fad}</Project>
+      <Name>TestBase4.TestCases.AReferencedAssembly</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestBase4.Specifications.ReferencedAssembly2\TestBase4.TestCases.ReferencedAssembly2.csproj">
+      <Project>{4fb6fae2-e62f-4d7c-8a06-041d07856a98}</Project>
+      <Name>TestBase4.TestCases.ReferencedAssembly2</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

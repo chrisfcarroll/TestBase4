@@ -1,6 +1,6 @@
-using TestBase4.Specifications.AReferencedAssembly.TestData;
+using TestBase4.TestCases.AReferencedAssembly;
 
-namespace TestBase4.Specifications.ReferencedAssembly2
+namespace TestBase4.TestCases.ReferencedAssembly2
 {
     public class NterfaceWithClassInReferencedAssembly : INterfaceWithClassInReferencedAssembly { }
 }

@@ -26,7 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\TestBase4.Specifications.XML</DocumentationFile>
-    <NoWarn>1574,1591</NoWarn>
+    <NoWarn>1574,1591,0219</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -55,10 +55,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInSameAssembly.cs" />
-    <Compile Include="TestData\INterfaceWithClassInSameAssembly.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithConcreteConstructorDependencies\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest.cs" />
-    <Compile Include="TestData\ClassWithDefaultConstructor.cs" />
-    <Compile Include="TestData\ClassWith1ConstructorParam.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInSameOrReferencedAssemblies.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\Given_TypeWithNoConstructorDependencies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,13 +68,13 @@
       <Project>{46d09587-1aed-47be-ac4f-4b46fff151fc}</Project>
       <Name>TestBase.AutoFixture</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TestBase4.Specifications.AReferencedAssembly\TestBase4.Specifications.AReferencedAssembly.csproj">
-      <Project>{3b4ac72b-be1d-442b-b769-e7f7c7011fad}</Project>
-      <Name>TestBase4.Specifications.AReferencedAssembly</Name>
+    <ProjectReference Include="..\TestBase4.Specifications.AReferencedAssembly\TestBase4.TestCases.AReferencedAssembly.csproj">
+      <Project>{3B4AC72B-BE1D-442B-B769-E7F7C7011FAD}</Project>
+      <Name>TestBase4.TestCases.AReferencedAssembly</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TestBase4.Specifications.ReferencedAssembly2\TestBase4.Specifications.ReferencedAssembly2.csproj">
-      <Project>{4fb6fae2-e62f-4d7c-8a06-041d07856a98}</Project>
-      <Name>TestBase4.Specifications.ReferencedAssembly2</Name>
+    <ProjectReference Include="..\TestBase4.TestCases\TestBase4.TestCases.csproj">
+      <Project>{18172094-9b5f-4613-93c7-26b3144f1781}</Project>
+      <Name>TestBase4.TestCases</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

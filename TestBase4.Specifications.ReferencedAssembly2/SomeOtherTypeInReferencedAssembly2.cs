@@ -1,4 +1,4 @@
-namespace TestBase4.Specifications.ReferencedAssembly2
+namespace TestBase4.TestCases.ReferencedAssembly2
 {
     public struct SomeOtherTypeInReferencedAssembly2{}
 }

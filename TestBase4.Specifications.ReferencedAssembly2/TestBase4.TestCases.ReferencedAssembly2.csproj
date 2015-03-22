@@ -7,8 +7,8 @@
     <ProjectGuid>{4FB6FAE2-E62F-4D7C-8A06-041D07856A98}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestBase4.Specifications.ReferencedAssembly2</RootNamespace>
-    <AssemblyName>TestBase4.Specifications.ReferencedAssembly2</AssemblyName>
+    <RootNamespace>TestBase4.TestCases.ReferencedAssembly2</RootNamespace>
+    <AssemblyName>TestBase4.TestCases.ReferencedAssembly2</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,8 +33,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -44,9 +42,9 @@
     <Compile Include="SomeOtherTypeInReferencedAssembly2.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TestBase4.Specifications.AReferencedAssembly\TestBase4.Specifications.AReferencedAssembly.csproj">
+    <ProjectReference Include="..\TestBase4.Specifications.AReferencedAssembly\TestBase4.TestCases.AReferencedAssembly.csproj">
       <Project>{3B4AC72B-BE1D-442B-B769-E7F7C7011FAD}</Project>
-      <Name>TestBase4.Specifications.AReferencedAssembly</Name>
+      <Name>TestBase4.TestCases.AReferencedAssembly</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -17,14 +17,22 @@ namespace TestBase
     public abstract class AutoFixtureStrategyAttribute : Attribute
     {
         /// <summary>
-        /// The implementing subclass should attempt to find a concrete type, assignable to <paramref name="inOrderToBuildTypes"/> by
+        /// Implementing subclasses should attempt to find a concrete type, assignable to <paramref name="type"/> by
         /// following the rule which it (the subclass) names.
         /// </summary>
-        /// <param name="type">The abstract type for which we seek a concrete subtype.</param>
-        /// <param name="inOrderToBuildTypes">The type we are ultimately trying to build, the 
-        ///     attempt to build which has recursively required an instance of <paramref name="type"/></param>
-        /// <returns>A concrete <see cref="Type"/> which is assignable to <see cref="type"/>.
-        /// Returns null if the rule identifies no suitable <see cref="Type"/>.</returns>
+        /// 
+        /// <param name="type">The abstract type for which we are now trying to build a concrete instance.</param>
+        /// 
+        /// <param name="inOrderToBuildTypes">The type which we were ultimately trying to build, and the types
+        /// we need to build it, which has recursively led us to need an instance of <paramref name="type"/>.
+        /// </param>
+        /// 
+        /// <returns>
+        /// <list type="table">
+        /// <item>A concrete <see cref="Type"/> which is assignable to <see cref="type"/>.</item>
+        /// <item>Returns null if the rule can identify no suitable <see cref="Type"/>.</item>
+        /// </list>
+        /// </returns>
         public abstract Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes);
     }
 }

@@ -1,11 +1,11 @@
 using NUnit.Framework;
 using TestBase;
-using TestBase4.Specifications.TestData;
+using TestBase4.TestCases;
 
 namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest.ForTypeWithAbstractConstructorDependencies
 {
     [TestFixture, FindInAssemblyUnderTest]
-    class GivenRule_FindInSameAssembly : TestBaseFor<ClassWith1ConstructorParam<INterfaceWithClassInSameAssembly>>
+    class GivenRule_FindInAssemblyUnderTest : TestBaseFor<ClassWith1ConstructorParam<INterfaceWithClassInSameAssembly>>
     {
         [Test]
         public void ThenI_FindConcreteTypeForInterfaceInSameAssembly()

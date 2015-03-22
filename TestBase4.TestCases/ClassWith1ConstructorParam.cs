@@ -1,6 +1,6 @@
-﻿namespace TestBase4.Specifications.AReferencedAssembly.TestData
+﻿namespace TestBase4.TestCases
 {
-    class ClassWith1ConstructorParam<T>
+    public class ClassWith1ConstructorParam<T>
     {
         readonly T param1;
         public ClassWith1ConstructorParam(T param1) { this.param1 = param1; }

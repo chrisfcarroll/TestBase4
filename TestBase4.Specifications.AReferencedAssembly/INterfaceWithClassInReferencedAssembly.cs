@@ -1,4 +1,4 @@
-﻿namespace TestBase4.Specifications.AReferencedAssembly.TestData
+﻿namespace TestBase4.TestCases.AReferencedAssembly
 {
     public interface INterfaceWithClassInReferencedAssembly { }
 }
