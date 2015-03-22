@@ -48,8 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoFixtureStrategyAttribute.cs" />
-    <Compile Include="FindInSameAssemblyAttribute.cs" />
-    <Compile Include="FindInSameOrReferencedAssemblies.cs" />
+    <Compile Include="FindInAssemblyUnderTestAttribute.cs" />
+    <Compile Include="FindInAssemblyUnderTestOrReferencedAssemblies.cs" />
     <Compile Include="TestBaseFor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

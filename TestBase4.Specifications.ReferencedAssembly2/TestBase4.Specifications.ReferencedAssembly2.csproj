@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="NterfaceWithClassInReferencedAssembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SomeOtherTypeInReferencedAssembly2.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TestBase4.Specifications.AReferencedAssembly\TestBase4.Specifications.AReferencedAssembly.csproj">

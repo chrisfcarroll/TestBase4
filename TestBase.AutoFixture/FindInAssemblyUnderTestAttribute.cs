@@ -5,11 +5,14 @@ using System.Linq;
 namespace TestBase
 {
     /// <summary>
-    /// This strategy may actually consider several assemblies, not just one:
-    /// The assembly of the interface or abstract type we are trying to construct; and the 
-    /// assembly of any of the types we have tried to construct and which led us to needing to construct this type.
+    /// <strong>Note</strong> that this strategy will consider several assemblies, not just one:
+    /// <list type="bullet">
+    /// <item>The 'Assembly Under Test' is primarily the assembly containing the Type under test.</item>
+    /// <item>But there are also the assemblies containing the Types which we recursively need in 
+    /// under to construct the Type under test.</item>
+    /// </list>
     /// </summary>
-    public class FindInSameAssemblyAttribute : AutoFixtureStrategyAttribute 
+    public class FindInAssemblyUnderTestAttribute : AutoFixtureStrategyAttribute 
     {
         public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes)
         {

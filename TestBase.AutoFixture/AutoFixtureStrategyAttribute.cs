@@ -4,11 +4,14 @@ using System.Collections.Generic;
 namespace TestBase
 {
     /// <summary>
-    /// Attributes inheriting from this class will be used as rules by instances of <see cref="TestBaseFor{T}"/>
-    /// when constructing the <see cref="TestBaseFor{T}.UnitUnderTest"/> during the unit test setup phase.
+    /// <para>Attributes inheriting from this class will be used as rules by instances of <see cref="TestBaseFor{T}"/>
+    /// when constructing the <see cref="TestBaseFor{T}.UnitUnderTest"/> during the unit test setup phase.</para>
     /// 
-    /// Rules are primarily concerned with where to look (e.g. which assemblies or namespaces) to find a concrete type 
-    /// to construct an instance of an interface or abstract type; and when to instead use mocks.
+    /// Rules are primarily concerned with 
+    /// <list type="bullet">
+    /// <item>Where to look (e.g. which assemblies or namespaces) to find a concrete type to construct 
+    /// an instance of an interface or abstract type</item>
+    /// </list>
     /// </summary>
     [AttributeUsageAttribute(AttributeTargets.Class,Inherited = true,AllowMultiple = true)]
     public abstract class AutoFixtureStrategyAttribute : Attribute
