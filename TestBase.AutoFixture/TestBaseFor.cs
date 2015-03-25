@@ -50,7 +50,7 @@ namespace TestBase
             var result=this.GetType()
                 .GetCustomAttributes(typeof (AutoFixtureStrategyAttribute), inherit: true)
                 .Cast<AutoFixtureStrategyAttribute>()
-                .Select(r => r.FindTypeAssignableTo(type,inOrderToBuildTypes))
+                .Select(r => r.FindTypeAssignableTo(type,inOrderToBuildTypes,this.GetType()))
                 .FirstOrDefault(t => t != null);
 
             Assert.NotNull(

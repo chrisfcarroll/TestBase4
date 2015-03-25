@@ -7,8 +7,8 @@
     <ProjectGuid>{814474AF-9A99-49E5-BC8C-AAC650AA31CD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestBase4.TestCases.ATransitivelyReferencedAssembly</RootNamespace>
-    <AssemblyName>TestBase4.TestCases.ATransitivelyReferencedAssembly</AssemblyName>
+    <RootNamespace>TestBase4.TestCases.ANotReferencedAssembly</RootNamespace>
+    <AssemblyName>TestBase4.TestCases.ANotReferencedAssembly</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestBase4.TestCases.AReferencedAssembly;
+﻿using TestBase4.TestCases.AReferencedAssembly;
 
-namespace TestBase4.TestCases.ATransitivelyReferencedAssembly
+namespace TestBase4.TestCases.ANotReferencedAssembly
 {
-    public class NterfaceWithClassInTransitivelyReferencedAssembly : INterfaceWithClassInTransitivelyReferencedAssembly { }
+    public class NterfaceWithClassInNotReferencedAssembly : INterfaceWithClassInNotReferencedAssembly { }
 }

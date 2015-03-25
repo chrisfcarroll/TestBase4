@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBase.AutoFixture", "Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBase4.TestCases.AReferencedAssembly", "TestBase4.Specifications.AReferencedAssembly\TestBase4.TestCases.AReferencedAssembly.csproj", "{3B4AC72B-BE1D-442B-B769-E7F7C7011FAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBase4.TestCases.ReferencedAssembly2", "TestBase4.Specifications.ReferencedAssembly2\TestBase4.TestCases.ReferencedAssembly2.csproj", "{4FB6FAE2-E62F-4D7C-8A06-041D07856A98}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBase4.TestCases.AReferencedAssembly2", "TestBase4.Specifications.ReferencedAssembly2\TestBase4.TestCases.AReferencedAssembly2.csproj", "{4FB6FAE2-E62F-4D7C-8A06-041D07856A98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBase4.TestCases.ATransitivelyReferencedAssembly", "TestBase4.TestCases.ATransitivelyReferencedAssembly\TestBase4.TestCases.ATransitivelyReferencedAssembly.csproj", "{814474AF-9A99-49E5-BC8C-AAC650AA31CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBase4.TestCases.ANotReferencedAssembly", "TestBase4.TestCases.ATransitivelyReferencedAssembly\TestBase4.TestCases.ANotReferencedAssembly.csproj", "{814474AF-9A99-49E5-BC8C-AAC650AA31CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBase4.TestCases", "TestBase4.TestCases\TestBase4.TestCases.csproj", "{18172094-9B5F-4613-93C7-26B3144F1781}"
 EndProject

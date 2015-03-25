@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 using TestBase4.TestCases.AReferencedAssembly;
 using TestBase4.TestCases.ReferencedAssembly2;
 
@@ -18,8 +22,7 @@ namespace TestBase4.TestCases
             // ReSharper disable once UnusedVariable
             var ref1 = new SomeOtherTypeInReferencedAssembly();
             var ref2 = new SomeOtherTypeInReferencedAssembly2();
-            return new ValueType[] {ref1, ref2};
-
+            return new object[] { ref1, ref2 };
         }
     }
 }

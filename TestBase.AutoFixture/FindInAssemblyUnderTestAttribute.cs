@@ -5,7 +5,7 @@ using System.Linq;
 namespace TestBase
 {
     /// <summary>
-    /// <strong>Note</strong> that this strategy may consider several assemblies, not just one:
+    /// <strong>Note</strong> that this strategy may consider not one but several assemblies:
     /// <list type="bullet">
     /// <item>The 'Assembly Under Test' is primarily the assembly containing the Type under test.</item>
     /// <item>But there are also the assemblies containing the Types which we recursively need in 
@@ -14,7 +14,7 @@ namespace TestBase
     /// </summary>
     public class FindInAssemblyUnderTestAttribute : AutoFixtureStrategyAttribute 
     {
-        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes)
+        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes, Type getType)
         {
             return type
                     .Assembly.GetTypes()

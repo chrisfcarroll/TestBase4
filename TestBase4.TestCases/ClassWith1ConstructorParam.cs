@@ -2,7 +2,7 @@
 {
     public class ClassWith1ConstructorParam<T>
     {
-        readonly T param1;
-        public ClassWith1ConstructorParam(T param1) { this.param1 = param1; }
+        public readonly T Param1;
+        public ClassWith1ConstructorParam(T param1) { this.Param1 = param1; }
     }
 }

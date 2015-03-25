@@ -46,9 +46,9 @@
       <Project>{3b4ac72b-be1d-442b-b769-e7f7c7011fad}</Project>
       <Name>TestBase4.TestCases.AReferencedAssembly</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TestBase4.Specifications.ReferencedAssembly2\TestBase4.TestCases.ReferencedAssembly2.csproj">
+    <ProjectReference Include="..\TestBase4.Specifications.ReferencedAssembly2\TestBase4.TestCases.AReferencedAssembly2.csproj">
       <Project>{4fb6fae2-e62f-4d7c-8a06-041d07856a98}</Project>
-      <Name>TestBase4.TestCases.ReferencedAssembly2</Name>
+      <Name>TestBase4.TestCases.AReferencedAssembly2</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

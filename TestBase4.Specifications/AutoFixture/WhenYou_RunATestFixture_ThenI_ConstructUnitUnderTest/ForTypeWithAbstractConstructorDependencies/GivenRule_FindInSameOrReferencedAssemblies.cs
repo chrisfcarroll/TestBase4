@@ -1,12 +1,14 @@
-﻿using NUnit.Framework;
+﻿using System.Reflection;
+using NUnit.Framework;
 using TestBase;
 using TestBase4.TestCases;
 using TestBase4.TestCases.AReferencedAssembly;
+using TestBase4.TestCases.ReferencedAssembly2;
 
 namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest.ForTypeWithAbstractConstructorDependencies
 {
     [TestFixture, FindInAssembliesReferencedByAssemblyUnderTest]
-    class GivenRule_FindInAssembliesReferencedByAssemblyUnderTest : TestBaseFor<ClassWith1ConstructorParam<INterfaceWithClassInReferencedAssembly>>
+    public class GivenRule_FindInAssembliesReferencedByAssemblyUnderTest : TestBaseFor<ClassWith1ConstructorParam<INterfaceWithClassInReferencedAssembly>>
     {
         [Test]
         public void ThenI_FindConcreteTypeForInterfaceInReferencedAssemblies()

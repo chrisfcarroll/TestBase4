@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoFixtureStrategyAttribute.cs" />
+    <Compile Include="FindInAssembliesInBaseDirectory.cs" />
     <Compile Include="FindInAssemblyUnderTestAttribute.cs" />
     <Compile Include="FindInAssembliesReferencedByAssemblyUnderTest.cs" />
     <Compile Include="TestBaseFor.cs" />
