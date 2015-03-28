@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -43,11 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TestBase4.Specifications.AReferencedAssembly\TestBase4.TestCases.AReferencedAssembly.csproj">
-      <Project>{3b4ac72b-be1d-442b-b769-e7f7c7011fad}</Project>
+      <Project>{3B4AC72B-BE1D-442B-B769-E7F7C7011FAD}</Project>
       <Name>TestBase4.TestCases.AReferencedAssembly</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestBase4.Specifications.ReferencedAssembly2\TestBase4.TestCases.AReferencedAssembly2.csproj">
-      <Project>{4fb6fae2-e62f-4d7c-8a06-041d07856a98}</Project>
+      <Project>{4FB6FAE2-E62F-4D7C-8A06-041D07856A98}</Project>
       <Name>TestBase4.TestCases.AReferencedAssembly2</Name>
     </ProjectReference>
   </ItemGroup>

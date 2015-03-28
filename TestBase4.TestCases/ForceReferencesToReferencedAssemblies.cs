@@ -15,7 +15,7 @@ namespace TestBase4.TestCases
     /// it a referenced assembly. Only if your code actually refers to a Type from that assembly 
     /// does it become referenced.
     /// </summary>
-    class ForceReferencesToReferencedAssemblies
+    static class ForceReferencesToReferencedAssemblies
     {
         public static object Force()
         {

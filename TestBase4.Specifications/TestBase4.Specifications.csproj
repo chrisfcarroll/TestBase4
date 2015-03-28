@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,10 +10,12 @@
     <AssemblyName>TestBase4.Specifications</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <!-- 
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids> 
+    -->
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <ReferencePath Condition="'$(OS)' == 'Windows_NT'">$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
   </PropertyGroup>
@@ -39,11 +41,10 @@
     <NoWarn>1574,1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="System" />
+    <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -55,18 +56,19 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInAssembliesInBaseDirectory.cs" />
-    <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInSameAssembly.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithConcreteConstructorDependencies\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest.cs" />
-    <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInSameOrReferencedAssemblies.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\Given_TypeWithNoConstructorDependencies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInAssembliesReferencedByAssemblyUnderTest.cs" />
+    <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInTestFixturesAssembly.cs" />
+    <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInAssemblyUnderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TestBase.AutoFixture\TestBase.AutoFixture.csproj">
-      <Project>{46d09587-1aed-47be-ac4f-4b46fff151fc}</Project>
+      <Project>{46D09587-1AED-47BE-AC4F-4B46FFF151FC}</Project>
       <Name>TestBase.AutoFixture</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestBase4.Specifications.AReferencedAssembly\TestBase4.TestCases.AReferencedAssembly.csproj">
@@ -78,11 +80,11 @@
       <Name>TestBase4.TestCases.AReferencedAssembly2</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestBase4.TestCases.ATransitivelyReferencedAssembly\TestBase4.TestCases.ANotReferencedAssembly.csproj">
-      <Project>{814474af-9a99-49e5-bc8c-aac650aa31cd}</Project>
+      <Project>{814474AF-9A99-49E5-BC8C-AAC650AA31CD}</Project>
       <Name>TestBase4.TestCases.ANotReferencedAssembly</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestBase4.TestCases\TestBase4.TestCases.csproj">
-      <Project>{18172094-9b5f-4613-93c7-26b3144f1781}</Project>
+      <Project>{18172094-9B5F-4613-93C7-26B3144F1781}</Project>
       <Name>TestBase4.TestCases</Name>
     </ProjectReference>
   </ItemGroup>

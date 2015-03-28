@@ -9,6 +9,7 @@ namespace TestBase
     /// <summary>
     /// Searches files with a .dll or .exe extension in the <see cref="AppDomain.BaseDirectory"/> directory and
     /// finds Types in them.
+    /// In a typical edit/test from the IDE usage, the BaseDirectory will the the Test Projects bin\Debug directory.
     /// </summary>
     public class FindInAssembliesInBaseDirectory : AutoFixtureStrategyAttribute
     {
