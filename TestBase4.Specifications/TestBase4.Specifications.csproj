@@ -62,6 +62,8 @@
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInAssembliesReferencedByAssemblyUnderTest.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInTestFixturesAssembly.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInAssemblyUnderTest.cs" />
+    <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInAssembly_And_NameOfAnAlreadyLoadedAssembly.cs" />
+    <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInAssembly_And_NameOfAssemblyInBaseDirectory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
