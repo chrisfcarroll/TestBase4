@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassWith1ConstructorParam.cs" />
+    <Compile Include="ClassWith3ConstructorParams.cs" />
     <Compile Include="ClassWithDefaultConstructor.cs" />
     <Compile Include="ForceReferencesToReferencedAssemblies.cs" />
     <Compile Include="INterface.cs" />

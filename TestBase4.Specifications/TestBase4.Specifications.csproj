@@ -55,6 +55,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenMultipleRules\ThenI_ApplyAllRulesAsNeeded.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInAssembliesInBaseDirectory.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithConcreteConstructorDependencies\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\Given_TypeWithNoConstructorDependencies.cs" />
@@ -69,9 +70,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TestBase.AutoFixture\TestBase.AutoFixture.csproj">
+    <ProjectReference Include="..\TestBase.AutoFixture\TestBase.AutoBuild.csproj">
       <Project>{46D09587-1AED-47BE-AC4F-4B46FFF151FC}</Project>
-      <Name>TestBase.AutoFixture</Name>
+      <Name>TestBase.AutoBuild</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestBase4.Specifications.AReferencedAssembly\TestBase4.TestCases.AReferencedAssembly.csproj">
       <Project>{3B4AC72B-BE1D-442B-B769-E7F7C7011FAD}</Project>
@@ -90,7 +91,9 @@
       <Name>TestBase4.TestCases</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

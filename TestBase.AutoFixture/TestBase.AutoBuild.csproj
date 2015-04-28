@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestBase</RootNamespace>
-    <AssemblyName>TestBase.AutoFixture</AssemblyName>
+    <AssemblyName>TestBase.AutoBuild</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\TestBase.AutoFixture.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\TestBase.AutoBuild.xml</DocumentationFile>
     <NoWarn>1574,1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -30,7 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\TestBase.AutoFixture.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\TestBase.AutoBuild.xml</DocumentationFile>
     <NoWarn>1574,1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoBuild.cs" />
     <Compile Include="AutoFixtureStrategyAttribute.cs" />
     <Compile Include="FindInAssembliesInBaseDirectory.cs" />
     <Compile Include="FindInAssemblyUnderTestAttribute.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FindInTestFixturesAssemblyAttribute.cs" />
     <Compile Include="FindInAssemblyAtttribute.cs" />
+    <Compile Include="TypeExtensionsForGetRules.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

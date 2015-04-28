@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace TestBase
 {
@@ -17,51 +13,7 @@ namespace TestBase
         [SetUp]
         protected virtual void CreateUnitUnderTest()
         {
-            UnitUnderTest = (T)CreateInstanceByMakingUpParameters(typeof(T));
-        }
-
-        protected internal object CreateInstanceByMakingUpParameters(Type type, IEnumerable<Type> inOrderToBuildTypes= null)
-        {
-            inOrderToBuildTypes = (inOrderToBuildTypes ?? new List<Type>{typeof(T)}).Union(new []{type});
-            var constructor = type.GetConstructors().FirstOrDefault();
-            if (type == typeof (string))
-            {
-                return typeof(string).Name;
-            }
-            else if (type.IsAbstract || type.IsInterface)
-            {
-                return CreateInstanceByMakingUpParameters(FindConcreteTypeAssignableTo(type, inOrderToBuildTypes));
-            }
-            else if (type.IsValueType || constructor==null || constructor.GetParameters().Length == 0)
-            {
-                return Activator.CreateInstance(type);
-            }
-            else
-            {
-                var pars = constructor.GetParameters()
-                            .Select(p => CreateInstanceByMakingUpParameters(p.ParameterType))
-                            .ToArray();
-                return Activator.CreateInstance(type, pars);
-            }
-        }
-
-        protected internal Type FindConcreteTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes)
-        {
-            var result=this.GetType()
-                .GetCustomAttributes(typeof (AutoFixtureStrategyAttribute), inherit: true)
-                .Cast<AutoFixtureStrategyAttribute>()
-                .Select(r => r.FindTypeAssignableTo(type,inOrderToBuildTypes,this.GetType()))
-                .FirstOrDefault(t => t != null);
-
-            Assert.NotNull(
-                result,
-                "Failed to find a Type assignable to " + type.FullName + " using rules " 
-                    + string.Join(", ", 
-                        this.GetType()
-                            .GetCustomAttributes(typeof (AutoFixtureStrategyAttribute), inherit: true)
-                            .Cast<AutoFixtureStrategyAttribute>()
-                            .ToArray().Select(r=>r.GetType().Name)));
-            return result;
+            UnitUnderTest = AutoBuild.InstanceByMakingUpParameters<T>(this);
         }
     }
 }
