@@ -12,9 +12,9 @@ namespace TestBase
     /// under to construct the Type under test.</item>
     /// </list>
     /// </summary>
-    public class FindInAssemblyUnderTestAttribute : AutoFixtureStrategyAttribute 
+    public class FindInAssemblyUnderTestAttribute : AutoBuildFindTypeRuleAttribute 
     {
-        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes, Type getType)
+        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes = null, object getType = null)
         {
             return type
                     .Assembly.GetTypes()

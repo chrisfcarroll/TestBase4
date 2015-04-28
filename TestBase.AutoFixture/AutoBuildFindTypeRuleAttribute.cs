@@ -4,17 +4,14 @@ using System.Collections.Generic;
 namespace TestBase
 {
     /// <summary>
-    /// <para>Attributes inheriting from this class will be used as rules by instances of <see cref="TestBaseFor{T}"/>
-    /// when constructing the <see cref="TestBaseFor{T}.UnitUnderTest"/> during the unit test setup phase.</para>
+    /// <para>Attributes inheriting from this class will be used as rules by <see cref="AutoBuild"/>/>
+    /// when constructing a concrete instance</para>
     /// 
-    /// Rules are primarily concerned with 
-    /// <list type="bullet">
-    /// <item>Where to look (e.g. which assemblies or namespaces) to find a concrete type to construct 
-    /// an instance of an interface or abstract type</item>
-    /// </list>
+    /// Rules inheriting from <see cref="AutoBuildFindTypeRuleAttribute"/> are concerned with 
+    /// where to look (e.g. which assemblies or namespaces) for a concrete type
     /// </summary>
     [AttributeUsageAttribute(AttributeTargets.Class,Inherited = true,AllowMultiple = true)]
-    public abstract class AutoFixtureStrategyAttribute : Attribute
+    public abstract class AutoBuildFindTypeRuleAttribute : Attribute, IAutoBuildRule
     {
         /// <summary>
         /// Implementing subclasses should attempt to find a concrete type, assignable to <paramref name="type"/> by
@@ -24,13 +21,13 @@ namespace TestBase
         /// <param name="inOrderToBuildTypes">The type which we were ultimately trying to build, and the types
         ///     we need to build it, which has recursively led us to need an instance of <paramref name="type"/>.
         /// </param>
-        /// <param name="testFixtureType">the Type of the test fixture which is trying to construct something</param>
+        /// <param name="requestedBy"></param>
         /// <returns>
         /// <list type="table">
         /// <item>A concrete <see cref="Type"/> which is assignable to <see cref="type"/>.</item>
         /// <item>Returns null if the rule can identify no suitable <see cref="Type"/>.</item>
         /// </list>
         /// </returns>
-        public abstract Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes, Type testFixtureType=null);
+        public abstract Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes = null, object requestedBy = null);
     }
 }

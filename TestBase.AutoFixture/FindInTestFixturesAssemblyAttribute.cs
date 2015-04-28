@@ -7,13 +7,15 @@ namespace TestBase
     /// <summary>
     /// This strategy will look just in the Test Assembly, i.e. the Assembly in which the TestFixture is defined.
     /// </summary>
-    public class FindInTestFixturesAssemblyAttribute : AutoFixtureStrategyAttribute 
+    public class FindInTestFixturesAssemblyAttribute : AutoBuildFindTypeRuleAttribute 
     {
-        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes, Type testFixtureType)
+        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes = null, object testFixtureType = null)
         {
-            return testFixtureType
-                    .Assembly.GetTypes()
-                    .FirstOrDefault(t => !t.IsAbstract && !t.IsInterface && type.IsAssignableFrom(t));
+            return testFixtureType==null
+                    ? null
+                    : testFixtureType.GetType()
+                        .Assembly.GetTypes()
+                        .FirstOrDefault(t => !t.IsAbstract && !t.IsInterface && type.IsAssignableFrom(t));
         }
     }
 }

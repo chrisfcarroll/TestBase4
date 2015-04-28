@@ -11,17 +11,15 @@ namespace TestBase
     /// finds Types in them.
     /// In a typical edit/test from the IDE usage, the BaseDirectory will the the Test Projects bin\Debug directory.
     /// </summary>
-    public class FindInAssembly : AutoFixtureStrategyAttribute
+    public class FindInAssemblyAttribute : AutoBuildFindTypeRuleAttribute
     {
-        public FindInAssembly(string assemblyName){
-            this.assemblyName = assemblyName;
-        }
+        public FindInAssemblyAttribute(string assemblyName){ this.assemblyName = assemblyName; }
 
         static readonly DirectoryInfo BaseDirectory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
 
         readonly string assemblyName;
 
-        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes, Type testFixtureType)
+        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes = null, object testFixtureType = null)
         {
             if(assemblyName.Contains('*') || assemblyName.Contains('?'))
             {

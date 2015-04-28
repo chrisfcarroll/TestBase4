@@ -11,7 +11,7 @@ namespace TestBase
     /// finds Types in them.
     /// In a typical edit/test from the IDE usage, the BaseDirectory will the the Test Projects bin\Debug directory.
     /// </summary>
-    public class FindInAssembliesInBaseDirectory : AutoFixtureStrategyAttribute
+    public class FindInAssembliesInBaseDirectory : AutoBuildFindTypeRuleAttribute
     {
         static readonly string[] DefaultIgnores = { "System", "nunit", "Moq" };
         static readonly DirectoryInfo BaseDirectory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
@@ -21,7 +21,7 @@ namespace TestBase
         /// </summary>
         public string[] IgnoreAssembliesWhereNameStartsWith { get; set; }
 
-        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes, Type testFixtureType)
+        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes = null, object requestedBy = null)
         {
             var assembliesToIgnore = (IgnoreAssembliesWhereNameStartsWith ?? new string[0]).Union(DefaultIgnores);
 

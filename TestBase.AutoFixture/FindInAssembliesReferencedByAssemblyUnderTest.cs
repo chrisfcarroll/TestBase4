@@ -18,7 +18,7 @@ namespace TestBase
     /// need in under to construct that Type under test.</item>
     /// </list>
     /// </summary>
-    public class FindInAssembliesReferencedByAssemblyUnderTest : AutoFixtureStrategyAttribute
+    public class FindInAssembliesReferencedByAssemblyUnderTest : AutoBuildFindTypeRuleAttribute
     {
         static readonly string[] DefaultIgnores = { "mscorlib", "System", "nunit", "Microsoft.VisualStudio", "Moq" };
 
@@ -27,25 +27,34 @@ namespace TestBase
         /// </summary>
         public string[] IgnoreAssembliesWhereNameStartsWith { get; set; }
 
-        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes, Type testFixtureType = null)
+        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes = null, object requestingTestFixture = null)
         {
+            return requestingTestFixture == null ? null : FindType(type, inOrderToBuildTypes, requestingTestFixture.GetType());
+        }
+
+        Type FindType(Type type, IEnumerable<Type> inOrderToBuildTypes, Type requestingType)
+        {
+            var typesFromWhichToSearch =
+                new[] {requestingType}
+                    .Union(inOrderToBuildTypes ?? new Type[0]).Where(x => x != null);
+
             var assembliesToIgnore = (IgnoreAssembliesWhereNameStartsWith ?? new string[0]).Union(DefaultIgnores);
 
             var assemblyNamesToSearch =
-                    inOrderToBuildTypes
-                        .SelectMany(t => t.Assembly.GetReferencedAssemblies())
-                        .Where(a => !assembliesToIgnore.Any(n => a.FullName.StartsWith(n)));
+                typesFromWhichToSearch
+                    .SelectMany(t => t.Assembly.GetReferencedAssemblies())
+                    .Where(a => !assembliesToIgnore.Any(n => a.FullName.StartsWith(n)));
 
-            var allTypesInReferencedAssemblies = 
-                    assemblyNamesToSearch
-                        .Select(name => Assembly.Load(name))
-                        .SelectMany(a => a.GetTypes());
+            var allTypesInReferencedAssemblies =
+                assemblyNamesToSearch
+                    .Select(name => Assembly.Load(name))
+                    .SelectMany(a => a.GetTypes());
 
             var relevantTypes =
-                    allTypesInReferencedAssemblies.Where(
-                        t => !t.IsAbstract
-                             && !t.IsInterface
-                             && type.IsAssignableFrom(t));
+                allTypesInReferencedAssemblies.Where(
+                    t => !t.IsAbstract
+                         && !t.IsInterface
+                         && type.IsAssignableFrom(t));
 
             return relevantTypes.FirstOrDefault();
         }

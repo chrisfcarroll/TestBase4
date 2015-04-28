@@ -6,11 +6,11 @@ namespace TestBase
 {
     public static class TypeExtensionsForGetRules
     {
-        public static IEnumerable<AutoFixtureStrategyAttribute> GetAutoFixtureRulesFromAttributes(this Type typeWithAttributes)
+        public static IEnumerable<AutoBuildFindTypeRuleAttribute> GetAutoFixtureRulesFromAttributes(this Type typeWithAttributes)
         {
             return typeWithAttributes
-                .GetCustomAttributes(typeof(AutoFixtureStrategyAttribute), inherit: true)
-                .Cast<AutoFixtureStrategyAttribute>();
+                .GetCustomAttributes(typeof(AutoBuildFindTypeRuleAttribute), inherit: true)
+                .Cast<AutoBuildFindTypeRuleAttribute>();
         }
     }
 }
