@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace TestBase
 {
@@ -69,13 +70,9 @@ namespace TestBase
             }
         }
 
-        static object InstanceFromConstructorRules(Type type, IEnumerable<IAutoBuildRule> rules, IEnumerable<Type> inOrderToBuildTypes, object requestedBy)
+        public static object InstanceFromConstructorRules(Type type, IEnumerable<IAutoBuildRule> rules, IEnumerable<Type> inOrderToBuildTypes, object requestedBy)
         {
-            var constructor = rules
-                .OfType<AutoBuildChooseConstructorRuleAttribute>()
-                .Union(new[] {new ChooseConstructorWithFewestParametersAttribute()})
-                .Select(r => r.ChooseConstructor(type, inOrderToBuildTypes, requestedBy))
-                .FirstOrDefault();
+            var constructor = ChooseConstructor(type, rules.OfType<IAutoBuildChooseConstructorRule>() , inOrderToBuildTypes, requestedBy);
 
             if (constructor == null || constructor.GetParameters().Length == 0)
             {
@@ -88,6 +85,14 @@ namespace TestBase
                     .ToArray();
                 return Activator.CreateInstance(type, pars);
             }
+        }
+
+        public static ConstructorInfo ChooseConstructor(Type type, IEnumerable<IAutoBuildChooseConstructorRule> rules, IEnumerable<Type> inOrderToBuildTypes, object requestedBy)
+        {
+            return rules
+                .Union(new[] {new ChooseConstructorWithFewestParametersAttribute()})
+                .Select(r => r.ChooseConstructor(type, inOrderToBuildTypes, requestedBy))
+                .FirstOrDefault();
         }
     }
 }

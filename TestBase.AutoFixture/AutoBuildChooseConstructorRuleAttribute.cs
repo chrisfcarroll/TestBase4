@@ -11,7 +11,7 @@ namespace TestBase
     /// Rules inheriting from <see cref="AutoBuildChooseConstructorRuleAttribute"/> are concerned with 
     /// which constructor to choose (if there is more than one) when building a concrete type
     /// </summary>
-    public abstract class AutoBuildChooseConstructorRuleAttribute : Attribute, IAutoBuildRule
+    public abstract class AutoBuildChooseConstructorRuleAttribute : Attribute, IAutoBuildChooseConstructorRule
     {
         public abstract ConstructorInfo ChooseConstructor(Type type, IEnumerable<Type> inOrderToBuildTypes, object requestedBy = null);
     }

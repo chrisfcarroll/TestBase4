@@ -18,7 +18,7 @@ namespace TestBase4.Specifications.AutoBuild_WhenBuildingAnInstance
             Assert.IsNull(result.param2);
         }
         [Test]
-        public void IChooseMoststParameters_GivenMostParametersRule()
+        public void IChooseMostestParameters_GivenMostParametersRule()
         {
             IEnumerable<IAutoBuildRule> rules = new[] { new ChooseConstructorWithMostParametersAttribute() };
             //

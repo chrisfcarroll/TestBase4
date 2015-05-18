@@ -11,7 +11,7 @@ namespace TestBase
     /// where to look (e.g. which assemblies or namespaces) for a concrete type
     /// </summary>
     [AttributeUsageAttribute(AttributeTargets.Class,Inherited = true,AllowMultiple = true)]
-    public abstract class AutoBuildFindTypeRuleAttribute : Attribute, IAutoBuildRule
+    public abstract class AutoBuildFindTypeRuleAttribute : Attribute, IAutoBuildFindTypeRule
     {
         /// <summary>
         /// Implementing subclasses should attempt to find a concrete type, assignable to <paramref name="type"/> by

@@ -11,7 +11,7 @@ namespace TestBase
     /// finds Types in them.
     /// In a typical edit/test from the IDE usage, the BaseDirectory will the the Test Projects bin\Debug directory.
     /// </summary>
-    public class FindInAssembliesInBaseDirectory : AutoBuildFindTypeRuleAttribute
+    public class FindInAssembliesInBaseDirectoryAttribute : AutoBuildFindTypeRuleAttribute
     {
         static readonly string[] DefaultIgnores = { "System", "nunit", "Moq" };
         static readonly DirectoryInfo BaseDirectory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);

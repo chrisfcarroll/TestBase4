@@ -51,7 +51,8 @@
     <Compile Include="AutoBuildFindTypeRuleAttribute.cs" />
     <Compile Include="ChooseConstructorWithFewestParametersAttribute.cs" />
     <Compile Include="ChooseConstructorWithMostParametersAttribute.cs" />
-    <Compile Include="FindInAssembliesInBaseDirectory.cs" />
+    <Compile Include="FindInAssembliesInBaseDirectoryAttribute.cs" />
+    <Compile Include="AutoBuildDefaultRulesAttribute.cs" />
     <Compile Include="FindInAssemblyUnderTestAttribute.cs" />
     <Compile Include="FindInAssembliesReferencedByAssemblyUnderTest.cs" />
     <Compile Include="IAutoBuildRule.cs" />
