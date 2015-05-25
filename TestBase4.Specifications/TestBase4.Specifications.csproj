@@ -61,8 +61,8 @@
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInAssembliesInBaseDirectory.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithConcreteConstructorDependencies\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\Given_TypeWithNoConstructorDependencies.cs" />
-    <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\Using_DefaultRuleset__ForTestCaseWith3AbstractDependencies.cs" />
-    <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\Using_DefaultRuleset__ForTestCaseWithNoDependencies.cs" />
+    <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\Given_DefaultRuleset__ForTestCaseWith3AbstractDependencies.cs" />
+    <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\Given_DefaultRuleset__ForTestCaseWithNoDependencies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInAssembliesReferencedByAssemblyUnderTest.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInTestFixturesAssembly.cs" />
