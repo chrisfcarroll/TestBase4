@@ -10,7 +10,7 @@ namespace TestBase
 
         public bool PreferPublic { get; set; }
 
-        public override ConstructorInfo ChooseConstructor(Type type, IEnumerable<Type> inOrderToBuildTypes, object requestedBy=null)
+        public override ConstructorInfo ChooseConstructor(Type type, IEnumerable<Type> theStackOfTypesToBuild, object requestedBy=null)
         {
             return type.GetConstructors()
                 .OrderByDescending(c => PreferPublic && c.IsPublic)

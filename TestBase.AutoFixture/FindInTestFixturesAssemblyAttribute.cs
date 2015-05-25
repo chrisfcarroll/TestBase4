@@ -9,7 +9,7 @@ namespace TestBase
     /// </summary>
     public class FindInTestFixturesAssemblyAttribute : AutoBuildFindTypeRuleAttribute 
     {
-        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes = null, object testFixtureType = null)
+        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object testFixtureType = null)
         {
             return testFixtureType==null
                     ? null

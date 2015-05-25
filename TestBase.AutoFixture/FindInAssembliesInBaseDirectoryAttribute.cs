@@ -21,7 +21,7 @@ namespace TestBase
         /// </summary>
         public string[] IgnoreAssembliesWhereNameStartsWith { get; set; }
 
-        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes = null, object requestedBy = null)
+        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object requestedBy = null)
         {
             var assembliesToIgnore = (IgnoreAssembliesWhereNameStartsWith ?? new string[0]).Union(DefaultIgnores);
 

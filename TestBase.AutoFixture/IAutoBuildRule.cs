@@ -8,11 +8,11 @@ namespace TestBase
 
     public interface IAutoBuildChooseConstructorRule : IAutoBuildRule
     {
-        ConstructorInfo ChooseConstructor(Type type, IEnumerable<Type> inOrderToBuildTypes, object requestedBy = null);
+        ConstructorInfo ChooseConstructor(Type type, IEnumerable<Type> theStackOfTypesToBuild, object requestedBy = null);
     }
 
     public interface IAutoBuildFindTypeRule : IAutoBuildRule
     {
-        Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes = null, object getType = null);
+        Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object getType = null);
     }
 }

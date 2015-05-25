@@ -5,17 +5,14 @@ using TestBase4.TestCases.AReferencedAssembly;
 
 namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest
 {
-    [TestFixture, AutoBuildDefaultRules]
-    class Using_DefaultRuleset__Given_DefaultRulesSpecified : 
-        TestBaseFor<ClassWith3ConstructorParams
-                        <INterfaceWithClassInSameAssembly, 
-                         INterfaceWithFakeInTestAssembly, 
-                         INterfaceWithClassInNotReferencedAssembly>>
+    [TestFixture, DefaultRules]
+    public class Using_DefaultRuleset__ForTestCaseWith3AbstractDependencies :
+        TestBaseFor<ClassWith3ConstructorParams<INterfaceWithClassInSameAssembly, INterfaceWithFakeInTestAssembly, INterfaceWithClassInNotReferencedAssembly>>
     {
         [Test]
         public void AndI_BuildRequestedType()
         {
-            Assert.That(UnitUnderTest, Is.Not.Null);
+            Assert.NotNull(UnitUnderTest);
             Assert.That(UnitUnderTest, Is.AssignableTo<ClassWith3ConstructorParams<INterfaceWithClassInSameAssembly, INterfaceWithFakeInTestAssembly, INterfaceWithClassInNotReferencedAssembly>>());
         }
 
@@ -38,6 +35,5 @@ namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_Con
             Assert.That(UnitUnderTest.Param3, Is.AssignableTo<INterfaceWithClassInNotReferencedAssembly>());
             Assert.That(UnitUnderTest.Param3.GetType().Assembly.FullName.Contains("TestBase4.TestCases.ANotReferencedAssembly"));
         }
-
     }
 }

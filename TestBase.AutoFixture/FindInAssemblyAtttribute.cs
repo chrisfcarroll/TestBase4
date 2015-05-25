@@ -19,7 +19,7 @@ namespace TestBase
 
         readonly string assemblyName;
 
-        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes = null, object testFixtureType = null)
+        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object testFixtureType = null)
         {
             if(assemblyName.Contains('*') || assemblyName.Contains('?'))
             {

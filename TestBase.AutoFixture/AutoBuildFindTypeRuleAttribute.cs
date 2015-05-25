@@ -18,7 +18,7 @@ namespace TestBase
         /// following the rule which it (the subclass) names.
         /// </summary>
         /// <param name="type">The abstract Type for which we are now trying to build a concrete instance.</param>
-        /// <param name="inOrderToBuildTypes">The type which we were ultimately trying to build, and the types
+        /// <param name="theStackOfTypesToBuild">The type which we were ultimately trying to build, and the types
         ///     we need to build it, which has recursively led us to need an instance of <paramref name="type"/>.
         /// </param>
         /// <param name="requestedBy"></param>
@@ -28,6 +28,6 @@ namespace TestBase
         /// <item>Returns null if the rule can identify no suitable <see cref="Type"/>.</item>
         /// </list>
         /// </returns>
-        public abstract Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes = null, object requestedBy = null);
+        public abstract Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object requestedBy = null);
     }
 }

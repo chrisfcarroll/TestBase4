@@ -27,16 +27,16 @@ namespace TestBase
         /// </summary>
         public string[] IgnoreAssembliesWhereNameStartsWith { get; set; }
 
-        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes = null, object requestingTestFixture = null)
+        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object requestingTestFixture = null)
         {
-            return requestingTestFixture == null ? null : FindType(type, inOrderToBuildTypes, requestingTestFixture.GetType());
+            return requestingTestFixture == null ? null : FindType(type, theStackOfTypesToBuild, requestingTestFixture.GetType());
         }
 
-        Type FindType(Type type, IEnumerable<Type> inOrderToBuildTypes, Type requestingType)
+        Type FindType(Type type, IEnumerable<Type> theStackOfTypesToBuild, Type requestingType)
         {
             var typesFromWhichToSearch =
                 new[] {requestingType}
-                    .Union(inOrderToBuildTypes ?? new Type[0]).Where(x => x != null);
+                    .Union(theStackOfTypesToBuild ?? new Type[0]).Where(x => x != null);
 
             var assembliesToIgnore = (IgnoreAssembliesWhereNameStartsWith ?? new string[0]).Union(DefaultIgnores);
 

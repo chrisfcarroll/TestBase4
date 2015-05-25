@@ -14,11 +14,11 @@ namespace TestBase
     /// </summary>
     public class FindInAssemblyUnderTestAttribute : AutoBuildFindTypeRuleAttribute 
     {
-        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes = null, object getType = null)
+        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object getType = null)
         {
             return type
                     .Assembly.GetTypes()
-                    .Union(inOrderToBuildTypes.SelectMany(t=>t.Assembly.GetTypes()))
+                    .Union(theStackOfTypesToBuild.SelectMany(t=>t.Assembly.GetTypes()))
                     .FirstOrDefault(t => !t.IsAbstract && !t.IsInterface && type.IsAssignableFrom(t));
         }
     }

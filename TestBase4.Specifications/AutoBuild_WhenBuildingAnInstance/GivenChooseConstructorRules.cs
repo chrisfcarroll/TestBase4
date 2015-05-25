@@ -12,7 +12,7 @@ namespace TestBase4.Specifications.AutoBuild_WhenBuildingAnInstance
         {
             IEnumerable<IAutoBuildRule> rules = new[] {new ChooseConstructorWithFewestParametersAttribute()};
             //
-            var result = AutoBuild.InstanceByMakingUpParameters<ClassWithMultipleConstructors>(rules);
+            var result = AutoBuild.InstanceOf<ClassWithMultipleConstructors>(rules);
             //
             Assert.IsNull(result.param1);
             Assert.IsNull(result.param2);
@@ -22,7 +22,7 @@ namespace TestBase4.Specifications.AutoBuild_WhenBuildingAnInstance
         {
             IEnumerable<IAutoBuildRule> rules = new[] { new ChooseConstructorWithMostParametersAttribute() };
             //
-            var result = AutoBuild.InstanceByMakingUpParameters<ClassWithMultipleConstructors>(rules);
+            var result = AutoBuild.InstanceOf<ClassWithMultipleConstructors>(rules);
             //
             Assert.IsNotNull(result.param1);
             Assert.IsNotNull(result.param2);

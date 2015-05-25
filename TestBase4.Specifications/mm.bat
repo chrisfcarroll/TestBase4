@@ -1,0 +1,1 @@
+@start "Mighty Moose" C:\Users\chris\Software\dotNet\ContinuousTests\ReleaseBinaries\Installer\Standalone\ContinuousTests.exe

@@ -14,18 +14,24 @@ namespace TestBase
     /// under to construct the Type under test.</item>
     /// </list>
     /// </summary>
-    public class AutoBuildDefaultRulesAttribute : Attribute, IAutoBuildFindTypeRule, IAutoBuildChooseConstructorRule
+    public class DefaultRulesAttribute : Attribute, IAutoBuildFindTypeRule, IAutoBuildChooseConstructorRule
     {
-        public Type FindTypeAssignableTo(Type type, IEnumerable<Type> inOrderToBuildTypes = null, object requestedBy = null)
+        public Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object requestedBy = null)
         {
-            return TypeFinder.FindConcreteTypeAssignableTo(type, AllDefaultRules, inOrderToBuildTypes, requestedBy);
+            return TypeFinder.FindConcreteTypeAssignableTo(type, AllDefaultRules, theStackOfTypesToBuild, requestedBy);
         }
 
-        public ConstructorInfo ChooseConstructor(Type type, IEnumerable<Type> inOrderToBuildTypes, object requestedBy = null)
+        public ConstructorInfo ChooseConstructor(Type type, IEnumerable<Type> theStackOfTypesToBuild, object requestedBy = null)
         {
-            return AutoBuild.ChooseConstructor(type, DefaultChooseConstructorRules, inOrderToBuildTypes, requestedBy);
+            return AutoBuild.ChooseConstructor(type, DefaultChooseConstructorRuleSequence, theStackOfTypesToBuild, requestedBy);
         }
 
+        /// <summary>
+        /// The default rule sequence for finding a type to instantiate is, in this order:
+        /// <see cref="FindInAssemblyUnderTestAttribute"/>, 
+        /// <see cref="FindInTestFixturesAssemblyAttribute"/>, 
+        /// <see cref="FindInAssembliesInBaseDirectoryAttribute"/>
+        /// </summary>
         public static readonly IList<IAutoBuildFindTypeRule> 
                                    DefaultFindTypeRuleSequence = 
                                            new ReadOnlyCollection<IAutoBuildFindTypeRule>(
@@ -34,19 +40,27 @@ namespace TestBase
                                                    new FindInTestFixturesAssemblyAttribute(), 
                                                    new FindInAssembliesInBaseDirectoryAttribute() });
 
+        /// <summary>
+        /// The default ConstructorRule is, in this order:
+        /// <see cref="ChooseConstructorWithMostParametersAttribute"/>,
+        /// <see cref="ChooseConstructorWithFewestParametersAttribute"/>
+        /// </summary>
         public static readonly IList<IAutoBuildChooseConstructorRule>
-                                   DefaultChooseConstructorRules =
+                                   DefaultChooseConstructorRuleSequence =
                                            new ReadOnlyCollection<IAutoBuildChooseConstructorRule>(
                                                new IAutoBuildChooseConstructorRule[]{ 
                                                    new ChooseConstructorWithMostParametersAttribute(),
                                                    new ChooseConstructorWithFewestParametersAttribute() });
 
+        /// <summary>
+        /// The default Autobuild ruleset is the union of <see cref="DefaultFindTypeRuleSequence"/> and <see cref="DefaultChooseConstructorRuleSequence"/>
+        /// </summary>
         public static readonly IEnumerable<IAutoBuildRule> 
                                     AllDefaultRules = 
                                         new ReadOnlyCollection<IAutoBuildRule>(
                                                 (DefaultFindTypeRuleSequence.
                                                     Union<IAutoBuildRule>(
-                                                        DefaultChooseConstructorRules)
+                                                        DefaultChooseConstructorRuleSequence)
                                                 ).ToList());
 
     }

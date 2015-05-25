@@ -52,7 +52,7 @@
     <Compile Include="ChooseConstructorWithFewestParametersAttribute.cs" />
     <Compile Include="ChooseConstructorWithMostParametersAttribute.cs" />
     <Compile Include="FindInAssembliesInBaseDirectoryAttribute.cs" />
-    <Compile Include="AutoBuildDefaultRulesAttribute.cs" />
+    <Compile Include="DefaultRulesAttribute.cs" />
     <Compile Include="FindInAssemblyUnderTestAttribute.cs" />
     <Compile Include="FindInAssembliesReferencedByAssemblyUnderTest.cs" />
     <Compile Include="IAutoBuildRule.cs" />

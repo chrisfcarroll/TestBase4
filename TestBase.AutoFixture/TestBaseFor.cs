@@ -13,7 +13,7 @@ namespace TestBase
         [SetUp]
         protected virtual void CreateUnitUnderTest()
         {
-            UnitUnderTest = AutoBuild.InstanceByMakingUpParameters<T>(this);
+            UnitUnderTest = AutoBuild.InstanceOf<T>(this);
         }
     }
 }
