@@ -36,14 +36,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoBuild.cs" />
@@ -56,15 +48,11 @@
     <Compile Include="FindInAssemblyUnderTestAttribute.cs" />
     <Compile Include="FindInAssembliesReferencedByAssemblyUnderTest.cs" />
     <Compile Include="IAutoBuildRule.cs" />
-    <Compile Include="TestBaseFor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FindInTestFixturesAssemblyAttribute.cs" />
     <Compile Include="FindInAssemblyAtttribute.cs" />
     <Compile Include="TypeExtensionsForGetRules.cs" />
     <Compile Include="TypeFinder.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,7 +3,6 @@ using NUnit.Framework;
 using TestBase;
 using TestBase4.TestCases;
 using TestBase4.TestCases.AReferencedAssembly;
-using TestBase4.TestCases.ReferencedAssembly2;
 
 namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest.ForTypeWithAbstractConstructorDependencies
 {
