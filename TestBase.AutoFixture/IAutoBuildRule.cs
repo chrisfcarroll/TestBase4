@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using System.Reflection;
 
+
 namespace TestBase
 {
     public interface IAutoBuildRule { }
+
+    public interface IAutoBuildCustomCreateRule : IAutoBuildRule
+    {
+        object CreateInstance(Type type, IEnumerable<Type> theStackOfTypesToBuild, object requestedBy = null);
+    }
 
     public interface IAutoBuildChooseConstructorRule : IAutoBuildRule
     {

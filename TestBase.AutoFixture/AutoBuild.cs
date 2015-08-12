@@ -72,13 +72,25 @@ namespace TestBase
             rules = rules ?? DefaultRules;
             theStackOfTypesToBuild = (theStackOfTypesToBuild ?? new List<Type>()).Union(new[] { type });
 
-            if (type == typeof(string))
+
+            //return CustomRuleResult() ?? ConstructedInstance() ?? FindSubclassResult();
+
+
+            var customRuleResult=rules.OfType<IAutoBuildCustomCreateRule>()
+                .Select(r => r.CreateInstance(type, theStackOfTypesToBuild, requestedBy))
+                .FirstOrDefault();
+
+            if(customRuleResult!=null)
             {
-                return typeof(string).Name;
+                return customRuleResult;
             }
             else if (type.IsAbstract || type.IsInterface)
             {
                 return InstanceOf(TypeFinder.FindConcreteTypeAssignableTo(type, rules, theStackOfTypesToBuild, requestedBy), rules, theStackOfTypesToBuild, requestedBy);
+            }
+            else if (type == typeof(string))
+            {
+                return typeof(string).Name;
             }
             else if (type.IsValueType)
             {

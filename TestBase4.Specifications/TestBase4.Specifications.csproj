@@ -70,6 +70,7 @@
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInAssembly_And_NameOfAnAlreadyLoadedAssembly.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInAssembly_And_NameOfAssemblyInBaseDirectory.cs" />
     <Compile Include="TestBaseFor.cs" />
+    <Compile Include="AutoBuild_WhenBuildingAnInstance\GivenCustomCreateRuleForAType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -84,7 +85,7 @@
       <Name>TestBase4.TestCases.AReferencedAssembly</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestBase4.TestCases.ATransitivelyReferencedAssembly\TestBase4.TestCases.ANotReferencedAssembly.csproj">
-      <Project>{814474af-9a99-49e5-bc8c-aac650aa31cd}</Project>
+      <Project>{814474AF-9A99-49E5-BC8C-AAC650AA31CD}</Project>
       <Name>TestBase4.TestCases.ANotReferencedAssembly</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestBase4.TestCases\TestBase4.TestCases.csproj">

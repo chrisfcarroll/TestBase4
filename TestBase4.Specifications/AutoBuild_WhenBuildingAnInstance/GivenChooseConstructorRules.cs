@@ -4,11 +4,13 @@ using TestBase;
 
 namespace TestBase4.Specifications.AutoBuild_WhenBuildingAnInstance
 {
+
+
     [TestFixture]
-    class GivenChooseConstructorRule
+    public class GivenChooseConstructorRule
     {
         [Test]
-        public void IChooseFewestParameters_GivenFewestParametersRule()
+        public void ThenI_ChooseFewestParameters_GivenFewestParametersRule()
         {
             IEnumerable<IAutoBuildRule> rules = new[] {new ChooseConstructorWithFewestParametersAttribute()};
             //
@@ -18,7 +20,7 @@ namespace TestBase4.Specifications.AutoBuild_WhenBuildingAnInstance
             Assert.IsNull(result.param2);
         }
         [Test]
-        public void IChooseMostestParameters_GivenMostParametersRule()
+        public void ThenI_ChooseMostestParameters_GivenMostParametersRule()
         {
             IEnumerable<IAutoBuildRule> rules = new[] { new ChooseConstructorWithMostParametersAttribute() };
             //
