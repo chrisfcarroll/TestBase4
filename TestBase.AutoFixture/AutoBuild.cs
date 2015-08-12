@@ -50,7 +50,7 @@ namespace TestBase
         }
 
         /// <summary>
-        /// AutoBuilds an instance of something assignable to <typeparamref name="T"/>. Does so using the given <paramref name="rules"/>.
+        /// AutoBuilds an instance of something assignable to <paramref name="type"/>. Does so using the given <paramref name="rules"/>.
         /// Note that since this overload doesn't take a <code>requestedBy</code> parameter, rules such as 
         /// <see cref="FindInTestFixturesAssemblyAttribute"/> which depend on that parameter will not run.
         /// </summary>
