@@ -6,7 +6,8 @@ using System;
 
 namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest.ForTypeWithAbstractConstructorDependencies
 {
-    [TestFixture, FindInAssembly("TestBase4.TestCases.ANotReferencedAssembly")]
+    [TestFixture]
+	[FindInAssembly("TestBase4.TestCases.ANotReferencedAssembly")]
     class GivenRule_FindInAssembly_And_NameOfAssemblyInBaseDirectory : TestBaseFor<ClassWith1ConstructorParam<INterfaceWithClassInNotReferencedAssembly>>
     {
         [Test]

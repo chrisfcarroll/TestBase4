@@ -4,7 +4,8 @@ using TestBase4.TestCases;
 
 namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest.ForTypeWithAbstractConstructorDependencies
 {
-    [TestFixture, FindInAssemblyUnderTest]
+    [TestFixture]
+	[FindInAssemblyUnderTest]
     class GivenRule_FindInAssemblyUnderTest : TestBaseFor<ClassWith1ConstructorParam<INterfaceWithClassInSameAssembly>>
     {
         [Test]

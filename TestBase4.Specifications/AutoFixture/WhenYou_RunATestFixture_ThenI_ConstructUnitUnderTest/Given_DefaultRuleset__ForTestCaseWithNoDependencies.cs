@@ -4,7 +4,8 @@ using TestBase4.TestCases;
 
 namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest
 {
-    [TestFixture, DefaultRules]
+    [TestFixture]
+	[DefaultRules]
     class Given_DefaultRuleset__ForTestCaseWithNoDependencies : TestBaseFor<ClassWithDefaultConstructor>
     {
         [Test]

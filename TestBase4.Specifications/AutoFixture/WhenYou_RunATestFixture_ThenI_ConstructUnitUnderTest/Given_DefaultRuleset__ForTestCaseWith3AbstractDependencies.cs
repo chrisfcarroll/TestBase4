@@ -5,7 +5,8 @@ using TestBase4.TestCases.AReferencedAssembly;
 
 namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest
 {
-    [TestFixture, DefaultRules]
+    [TestFixture]
+	[DefaultRules]
     public class Given_DefaultRuleset__ForTestCaseWith3AbstractDependencies :
         TestBaseFor<ClassWith3ConstructorParams<INterfaceWithClassInSameAssembly, INterfaceWithFakeInTestAssembly, INterfaceWithClassInNotReferencedAssembly>>
     {

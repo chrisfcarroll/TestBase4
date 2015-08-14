@@ -7,11 +7,10 @@ using System.Reflection;
 namespace TestBase
 {
     /// <summary>
-    /// <strong>Note</strong> that this strategy may consider not one but several assemblies:
+    /// This set of rules should do the right thing in many cases. It applies these rulesets: 
     /// <list type="bullet">
-    /// <item>The 'Assembly Under Test' is primarily the assembly containing the Type under test.</item>
-    /// <item>But there are also the assemblies containing the Types which we recursively need in 
-    /// under to construct the Type under test.</item>
+    /// <item>The rules in <see cref="DefaultFindTypeRuleSequence"/> in order, when looking for a concrete type to instantiate an interface or abstract type</item>
+    /// <item>The rules in <see cref="DefaultChooseConstructorRuleSequence"/> when constructing a concrete type.</item>
     /// </list>
     /// </summary>
     public class DefaultRulesAttribute : Attribute, IAutoBuildFindTypeRule, IAutoBuildChooseConstructorRule

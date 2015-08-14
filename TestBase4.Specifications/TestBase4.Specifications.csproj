@@ -55,7 +55,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="AutoBuild_WhenBuildingAnInstance\GivenBuildFromMethodRuleForAType.cs" />
     <Compile Include="AutoBuild_WhenBuildingAnInstance\GivenChooseConstructorRules.cs" />
+    <Compile Include="AutoBuild_WhenBuildingAnInstance\GivenMockRuleForAType.cs" />
     <Compile Include="AutoBuild_WhenBuildingAnInstance\Given_DefaultRuleSet.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenMultipleRules\ThenI_ApplyAllRulesAsNeeded.cs" />
     <Compile Include="AutoFixture\WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest\ForTypeWithAbstractConstructorDependencies\GivenRule_FindInAssembliesInBaseDirectory.cs" />

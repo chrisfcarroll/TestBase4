@@ -1,11 +1,16 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Collections.Generic;
+using NUnit.Framework;
 using TestBase;
 using TestBase4.TestCases;
 using TestBase4.TestCases.AReferencedAssembly;
 
 namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest.ForTypeWithAbstractConstructorDependencies.GivenMultipleRules
 {
-    [TestFixture, FindInAssemblyUnderTest, FindInTestFixturesAssembly, FindInAssembliesInBaseDirectory]
+    [TestFixture]
+    [FindInAssemblyUnderTest]
+    [FindInTestFixturesAssembly]
+    [FindInAssembliesInBaseDirectory]
     class ThenI_ApplyAllRulesAsNeeded : TestBaseFor<ClassWith3ConstructorParams<INterfaceWithClassInSameAssembly, INterfaceWithFakeInTestAssembly, INterfaceWithClassInNotReferencedAssembly>>
     {
         [Test]
@@ -36,4 +41,5 @@ namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_Con
         }
 
     }
+
 }

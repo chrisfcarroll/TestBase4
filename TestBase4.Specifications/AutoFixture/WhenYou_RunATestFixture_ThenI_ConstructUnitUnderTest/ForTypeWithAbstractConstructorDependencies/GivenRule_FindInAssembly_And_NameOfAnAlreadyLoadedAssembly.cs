@@ -7,7 +7,8 @@ using System;
 namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_ConstructUnitUnderTest.ForTypeWithAbstractConstructorDependencies
 {
 
-    [TestFixture, FindInAssembly("TestBase4.Specifications")]
+    [TestFixture]
+	[FindInAssembly("TestBase4.Specifications")]
     class GivenRule_FindInAssembly_And_NameOfAnAlreadyLoadedAssembly : TestBaseFor<ClassWith1ConstructorParam<INterfaceWithFakeInTestAssembly>>
     {
         [Test]
