@@ -29,10 +29,26 @@ namespace TestBase
 
         public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object requestingTestFixture = null)
         {
-            return requestingTestFixture == null ? null : FindType(type, theStackOfTypesToBuild, requestingTestFixture.GetType());
+            return requestingTestFixture == null 
+                ? null 
+                : FindType(
+                    t => !t.IsAbstract && !t.IsInterface && type.IsAssignableFrom(t), 
+                    theStackOfTypesToBuild, 
+                    requestingTestFixture.GetType()
+                    );
         }
 
-        Type FindType(Type type, IEnumerable<Type> theStackOfTypesToBuild, Type requestingType)
+        public override Type FindTypeAssignableTo(string typeName, IEnumerable<Type> theStackOfTypesToBuild = null, object requestingTestFixture = null)
+        {
+            return requestingTestFixture == null
+                       ? null
+                       : FindType(
+                                  t => !t.IsAbstract && !t.IsInterface && t.FullName.EndsWith(typeName),
+                                  theStackOfTypesToBuild,
+                                  requestingTestFixture.GetType());
+        }
+
+        Type FindType(Func<Type, bool> filterBy, IEnumerable<Type> theStackOfTypesToBuild, Type requestingType)
         {
             var typesFromWhichToSearch =
                 new[] {requestingType}
@@ -50,13 +66,7 @@ namespace TestBase
                     .Select(name => Assembly.Load(name))
                     .SelectMany(a => a.GetTypes());
 
-            var relevantTypes =
-                allTypesInReferencedAssemblies.Where(
-                    t => !t.IsAbstract
-                         && !t.IsInterface
-                         && type.IsAssignableFrom(t));
-
-            return relevantTypes.FirstOrDefault();
+            return allTypesInReferencedAssemblies.Where(filterBy).FirstOrDefault();
         }
     }
 }

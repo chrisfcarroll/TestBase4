@@ -43,7 +43,7 @@ namespace TestBase
             if (factoryClass != null) { EnsureFactoryMethodElseThrow(factoryClass, null); }
         }
 
-        public object CreateInstance(Type type, IEnumerable<Type> theStackOfTypesToBuild, object requestedBy = null)
+        public object CreateInstance(Type type, IEnumerable<Type> theStackOfTypesToBuild, object requestedBy)
         {
             if(type != targetTypeToBuild) {return null;}
             //

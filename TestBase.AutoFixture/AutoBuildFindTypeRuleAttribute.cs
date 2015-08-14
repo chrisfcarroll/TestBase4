@@ -11,7 +11,7 @@ namespace TestBase
     /// where to look (e.g. which assemblies or namespaces) for a concrete type
     /// </summary>
     [AttributeUsageAttribute(AttributeTargets.Class,Inherited = true,AllowMultiple = true)]
-    public abstract class AutoBuildFindTypeRuleAttribute : Attribute, IAutoBuildFindTypeRule
+    public abstract class AutoBuildFindTypeRuleAttribute : Attribute, IAutoBuildFindTypeRule, IAutoBuildFindTypeByNameRule
     {
         /// <summary>
         /// Implementing subclasses should attempt to find a concrete type, assignable to <paramref name="type"/> by
@@ -29,5 +29,7 @@ namespace TestBase
         /// </list>
         /// </returns>
         public abstract Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object requestedBy = null);
+
+        public abstract Type FindTypeAssignableTo(string typeName, IEnumerable<Type> theStackOfTypesToBuild = null, object requestedBy = null);
     }
 }

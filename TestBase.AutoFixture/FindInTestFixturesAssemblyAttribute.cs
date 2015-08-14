@@ -11,11 +11,17 @@ namespace TestBase
     {
         public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object testFixtureType = null)
         {
-            return testFixtureType==null
-                    ? null
-                    : testFixtureType.GetType()
-                        .Assembly.GetTypes()
-                        .FirstOrDefault(t => !t.IsAbstract && !t.IsInterface && type.IsAssignableFrom(t));
+            return FindTypeAssignableTo(testFixtureType, t => !t.IsAbstract && !t.IsInterface && type.IsAssignableFrom(t));
+        }
+
+        public override Type FindTypeAssignableTo(string typeNameRightPart, IEnumerable<Type> theStackOfTypesToBuild = null, object requestedBy = null)
+        {
+            return FindTypeAssignableTo(requestedBy, t => !t.IsAbstract && !t.IsInterface && t.FullName.EndsWith(typeNameRightPart));
+        }
+
+        static Type FindTypeAssignableTo(object testFixtureType, Func<Type, bool> filterBy)
+        {
+            return testFixtureType?.GetType().Assembly.GetTypes().FirstOrDefault(filterBy);
         }
     }
 }

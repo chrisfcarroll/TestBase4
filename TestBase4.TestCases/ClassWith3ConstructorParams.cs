@@ -16,9 +16,9 @@ namespace TestBase4.TestCases
 
         public ClassWith3ConstructorParams(T1 param1, T2 param2, T3 param3)
         {
-            this.Param1 = param1;
-            this.Param2 = param2;
-            this.Param3 = param3;
+            Param1 = param1;
+            Param2 = param2;
+            Param3 = param3;
         }
 
         public Tuple<T1, T2, T3> GetConstructorParams()

@@ -9,7 +9,7 @@ namespace TestBase
 
     public interface IAutoBuildCustomCreateRule : IAutoBuildRule
     {
-        object CreateInstance(Type type, IEnumerable<Type> theStackOfTypesToBuild, object requestedBy = null);
+        object CreateInstance(Type type, IEnumerable<Type> theStackOfTypesToBuild, object requestedBy);
     }
 
     public interface IAutoBuildChooseConstructorRule : IAutoBuildRule
@@ -20,5 +20,9 @@ namespace TestBase
     public interface IAutoBuildFindTypeRule : IAutoBuildRule
     {
         Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object getType = null);
+    }
+    public interface IAutoBuildFindTypeByNameRule : IAutoBuildRule
+    {
+        Type FindTypeAssignableTo(string typeNameRightPart, IEnumerable<Type> theStackOfTypesToBuild = null, object getType = null);
     }
 }

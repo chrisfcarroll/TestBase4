@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using TestBase;
+using TestBase4.Specifications.AutoBuild_WhenBuildingAnInstance;
 using TestBase4.TestCases;
 using TestBase4.TestCases.AReferencedAssembly;
 
@@ -11,13 +12,14 @@ namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_Con
     [FindInAssemblyUnderTest]
     [FindInTestFixturesAssembly]
     [FindInAssembliesInBaseDirectory]
-    class ThenI_ApplyAllRulesAsNeeded : TestBaseFor<ClassWith3ConstructorParams<INterfaceWithClassInSameAssembly, INterfaceWithFakeInTestAssembly, INterfaceWithClassInNotReferencedAssembly>>
+    [BuildFromMock(typeof(ICloneable))]
+    class ThenI_ApplyAllRulesAsNeeded : TestBaseFor<ClassWith4ConstructorParams<INterfaceWithClassInSameAssembly, INterfaceWithFakeInTestAssembly, INterfaceWithClassInNotReferencedAssembly, ICloneable>>
     {
         [Test]
         public void AndI_BuildRequestedType()
         {
             Assert.That(UnitUnderTest, Is.Not.Null);
-            Assert.That(UnitUnderTest, Is.AssignableTo<ClassWith3ConstructorParams<INterfaceWithClassInSameAssembly, INterfaceWithFakeInTestAssembly, INterfaceWithClassInNotReferencedAssembly>>());
+            Assert.That(UnitUnderTest, Is.AssignableTo<ClassWith4ConstructorParams<INterfaceWithClassInSameAssembly, INterfaceWithFakeInTestAssembly, INterfaceWithClassInNotReferencedAssembly, ICloneable>>());
         }
 
         [Test]
@@ -38,6 +40,13 @@ namespace TestBase4.Specifications.AutoFixture.WhenYou_RunATestFixture_ThenI_Con
         {
             Assert.That(UnitUnderTest.Param3, Is.AssignableTo<INterfaceWithClassInNotReferencedAssembly>());
             Assert.That(UnitUnderTest.Param3.GetType().Assembly.FullName.Contains("TestBase4.TestCases.ANotReferencedAssembly"));
+        }
+
+        [Test]
+        public void AndI_MockAnInterface__AssumingThatAKnownMockingFrameworkAssemblyWasFindable()
+        {
+            Assert.That(UnitUnderTest.Param4, Is.AssignableTo<ICloneable>());
+            Assert.True(MockHelper.IsAMock(UnitUnderTest.Param4));
         }
 
     }

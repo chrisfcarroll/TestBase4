@@ -21,32 +21,27 @@ namespace TestBase
 
         public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object testFixtureType = null)
         {
-            if(assemblyName.Contains('*') || assemblyName.Contains('?'))
-            {
-                return FindBestMatchFromAssembliesInBaseDirectory(type); 
-            }
-            else
-            {
-                try
-                {
-                    return Assembly.Load(assemblyName).GetTypes().First(type.IsAssignableFrom);
+            return FindTypeAssignableTo(t => !t.IsAbstract && !t.IsInterface && type.IsAssignableFrom(t));
+        }
+        public override Type FindTypeAssignableTo(string typeName, IEnumerable<Type> theStackOfTypesToBuild = null, object requestedBy = null)
+        {
+            return FindTypeAssignableTo(t => !t.IsAbstract && !t.IsInterface && t.FullName.EndsWith(typeName));
+        }
 
-                }
-                catch(Exception)
+        Type FindTypeAssignableTo(Func<Type, bool> filterBy)
+        {
+            if(assemblyName.Contains('*') || assemblyName.Contains('?')) { return FindBestMatchFromAssembliesInBaseDirectory(filterBy); } else
+            {
+                try { return Assembly.Load(assemblyName).GetTypes().First(filterBy); } catch(Exception)
                 {
-                    try
-                    {
-                        return Assembly.LoadFrom(assemblyName).GetTypes().First(type.IsAssignableFrom);
-                    }
-                    catch(Exception)
-                    {
-                        return FindBestMatchFromAssembliesInBaseDirectory(type); 
+                    try { return Assembly.LoadFrom(assemblyName).GetTypes().First(filterBy); } catch(Exception) {
+                        return FindBestMatchFromAssembliesInBaseDirectory(filterBy);
                     }
                 }
             }
         }
 
-        Type FindBestMatchFromAssembliesInBaseDirectory(Type type)
+        Type FindBestMatchFromAssembliesInBaseDirectory(Func<Type, bool> filterBy)
         {
             var possibleAssembliesInApplicationBase = BaseDirectory.EnumerateFiles(assemblyName + ".dll").Union(BaseDirectory.EnumerateFiles(assemblyName + ".exe")).OrderByDescending(a => a.FullName.Length);
             //Assembly name can contain wildcards 
@@ -61,7 +56,7 @@ namespace TestBase
                     return null;
                 }
             }).Where(a => a != null).SelectMany(a => a.GetTypes());
-            var relevantTypes = allTypesInBaseDirectory.Where(t => !t.IsAbstract && !t.IsInterface && type.IsAssignableFrom(t));
+            var relevantTypes = allTypesInBaseDirectory.Where(filterBy);
             return relevantTypes.FirstOrDefault();
         }
     }
