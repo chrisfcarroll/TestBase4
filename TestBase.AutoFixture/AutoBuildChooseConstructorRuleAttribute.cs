@@ -13,6 +13,6 @@ namespace TestBase
     /// </summary>
     public abstract class AutoBuildChooseConstructorRuleAttribute : Attribute, IAutoBuildChooseConstructorRule
     {
-        public abstract ConstructorInfo ChooseConstructor(Type type, IEnumerable<Type> theStackOfTypesToBuild, object requestedBy = null);
+        public abstract ConstructorInfo ChooseConstructor(Type type, IEnumerable<Type> typesWaitingToBeBuilt, object originalRequestor = null);
     }
 }

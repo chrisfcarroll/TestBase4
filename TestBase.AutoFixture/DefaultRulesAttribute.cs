@@ -15,14 +15,14 @@ namespace TestBase
     /// </summary>
     public class DefaultRulesAttribute : Attribute, IAutoBuildFindTypeRule, IAutoBuildChooseConstructorRule
     {
-        public Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object requestedBy = null)
+        public Type FindTypeAssignableTo(Type type, IEnumerable<Type> typesWaitingToBeBuilt = null, object originalRequestor = null)
         {
-            return TypeFinder.FindConcreteTypeAssignableTo(type, AllDefaultRules, theStackOfTypesToBuild, requestedBy);
+            return TypeFinder.FindConcreteTypeAssignableTo(type, AllDefaultRules, typesWaitingToBeBuilt, originalRequestor);
         }
 
-        public ConstructorInfo ChooseConstructor(Type type, IEnumerable<Type> theStackOfTypesToBuild, object requestedBy = null)
+        public ConstructorInfo ChooseConstructor(Type type, IEnumerable<Type> typesWaitingToBeBuilt, object originalRequestor = null)
         {
-            return AutoBuild.ChooseConstructor(type, DefaultChooseConstructorRuleSequence, theStackOfTypesToBuild, requestedBy);
+            return AutoBuild.ChooseConstructor(type, DefaultChooseConstructorRuleSequence, typesWaitingToBeBuilt, originalRequestor);
         }
 
         /// <summary>

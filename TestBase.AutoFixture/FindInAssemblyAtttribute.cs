@@ -19,11 +19,11 @@ namespace TestBase
 
         readonly string assemblyName;
 
-        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object testFixtureType = null)
+        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> typesWaitingToBeBuilt = null, object testFixtureType = null)
         {
             return FindTypeAssignableTo(t => !t.IsAbstract && !t.IsInterface && type.IsAssignableFrom(t));
         }
-        public override Type FindTypeAssignableTo(string typeName, IEnumerable<Type> theStackOfTypesToBuild = null, object requestedBy = null)
+        public override Type FindTypeAssignableTo(string typeName, IEnumerable<Type> typesWaitingToBeBuilt = null, object originalRequestor = null)
         {
             return FindTypeAssignableTo(t => !t.IsAbstract && !t.IsInterface && t.FullName.EndsWith(typeName));
         }

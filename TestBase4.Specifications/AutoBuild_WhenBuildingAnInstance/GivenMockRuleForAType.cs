@@ -38,8 +38,7 @@ namespace TestBase4.Specifications.AutoBuild_WhenBuildingAnInstance
     static class MockHelper
     {
         public static bool IsAMock(object value) { return knownIsMockTests.Select(m => m(value)).Any(); }
-        static bool IsAMoq(object value) { return BuildFromMoqAttribute.GetMoqMock(value) != null; }
 
-        static Func<object, bool>[] knownIsMockTests = { IsAMoq };
+        static Func<object, bool>[] knownIsMockTests = { new MoqMocker().IsThisMyMockObject };
     }
 }

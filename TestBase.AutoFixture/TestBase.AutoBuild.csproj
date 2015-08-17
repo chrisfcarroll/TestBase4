@@ -44,6 +44,9 @@
     <Compile Include="AutoBuildFindTypeRuleAttribute.cs" />
     <Compile Include="BuildFromFactoryAttribute.cs" />
     <Compile Include="BuildFromMockAttribute.cs" />
+    <Compile Include="MockingAdaptors\IMockingLibraryBasicAdapter.cs" />
+    <Compile Include="MockingAdaptors\IMockingLibraryInspectionAdapter.cs" />
+    <Compile Include="MockingAdaptors\MoqMocker.cs" />
     <Compile Include="ChooseConstructorWithFewestParametersAttribute.cs" />
     <Compile Include="ChooseConstructorWithMostParametersAttribute.cs" />
     <Compile Include="FindInAssembliesInBaseDirectoryAttribute.cs" />

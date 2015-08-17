@@ -14,20 +14,20 @@ namespace TestBase
     /// </summary>
     public class FindInAssemblyUnderTestAttribute : AutoBuildFindTypeRuleAttribute 
     {
-        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object getType = null)
+        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> typesWaitingToBeBuilt = null, object getType = null)
         {
-            return FindTypeAssignableTo(type, theStackOfTypesToBuild, t => !t.IsAbstract && !t.IsInterface && type.IsAssignableFrom(t));
+            return FindTypeAssignableTo(type, typesWaitingToBeBuilt, t => !t.IsAbstract && !t.IsInterface && type.IsAssignableFrom(t));
         }
 
-        static Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild, Func<Type, bool> filterBy)
+        static Type FindTypeAssignableTo(Type type, IEnumerable<Type> typesWaitingToBeBuilt, Func<Type, bool> filterBy)
         {
             return type
                 .Assembly.GetTypes()
-                .Union((theStackOfTypesToBuild ?? new Type[0]).SelectMany(t => t.Assembly.GetTypes()))
+                .Union((typesWaitingToBeBuilt ?? new Type[0]).SelectMany(t => t.Assembly.GetTypes()))
                 .FirstOrDefault(filterBy);
         }
 
-        public override Type FindTypeAssignableTo(string typeName, IEnumerable<Type> theStackOfTypesToBuild = null, object requestedBy = null)
+        public override Type FindTypeAssignableTo(string typeName, IEnumerable<Type> typesWaitingToBeBuilt = null, object originalRequestor = null)
         {
             throw new InvalidOperationException(this.GetType() + " cannot find a a Type by name because 'AssemblyUnderTest' is taken to mean the assembly in which the target type is found.");
         }

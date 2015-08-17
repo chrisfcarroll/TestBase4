@@ -31,7 +31,7 @@ namespace TestBase4.Specifications.AutoBuild_WhenBuildingAnInstance
         class CustomCreateRuleFor<T> : IAutoBuildCustomCreateRule
         {
             public CustomCreateRuleFor(T value) { this.value = value; }
-            public object CreateInstance(Type type, IEnumerable<Type> theStackOfTypesToBuild, object requestedBy = null) { return value; }
+            public object CreateInstance(Type type, IEnumerable<Type> typesWaitingToBeBuilt, object originalRequestor = null) { return value; }
             readonly T value;
         }
 

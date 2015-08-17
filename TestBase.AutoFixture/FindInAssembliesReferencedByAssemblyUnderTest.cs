@@ -27,32 +27,32 @@ namespace TestBase
         /// </summary>
         public string[] IgnoreAssembliesWhereNameStartsWith { get; set; }
 
-        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> theStackOfTypesToBuild = null, object requestingTestFixture = null)
+        public override Type FindTypeAssignableTo(Type type, IEnumerable<Type> typesWaitingToBeBuilt = null, object requestingTestFixture = null)
         {
             return requestingTestFixture == null 
                 ? null 
                 : FindType(
                     t => !t.IsAbstract && !t.IsInterface && type.IsAssignableFrom(t), 
-                    theStackOfTypesToBuild, 
+                    typesWaitingToBeBuilt, 
                     requestingTestFixture.GetType()
                     );
         }
 
-        public override Type FindTypeAssignableTo(string typeName, IEnumerable<Type> theStackOfTypesToBuild = null, object requestingTestFixture = null)
+        public override Type FindTypeAssignableTo(string typeName, IEnumerable<Type> typesWaitingToBeBuilt = null, object requestingTestFixture = null)
         {
             return requestingTestFixture == null
                        ? null
                        : FindType(
                                   t => !t.IsAbstract && !t.IsInterface && t.FullName.EndsWith(typeName),
-                                  theStackOfTypesToBuild,
+                                  typesWaitingToBeBuilt,
                                   requestingTestFixture.GetType());
         }
 
-        Type FindType(Func<Type, bool> filterBy, IEnumerable<Type> theStackOfTypesToBuild, Type requestingType)
+        Type FindType(Func<Type, bool> filterBy, IEnumerable<Type> typesWaitingToBeBuilt, Type requestingType)
         {
             var typesFromWhichToSearch =
                 new[] {requestingType}
-                    .Union(theStackOfTypesToBuild ?? new Type[0]).Where(x => x != null);
+                    .Union(typesWaitingToBeBuilt ?? new Type[0]).Where(x => x != null);
 
             var assembliesToIgnore = (IgnoreAssembliesWhereNameStartsWith ?? new string[0]).Union(DefaultIgnores);
 

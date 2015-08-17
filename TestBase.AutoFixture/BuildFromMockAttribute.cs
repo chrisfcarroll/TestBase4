@@ -1,81 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace TestBase
 {
     public class BuildFromMockAttribute : Attribute, IAutoBuildCustomCreateRule
     {
+        /// <remarks>
+        /// <list type="bullet">
+        /// <item>The default mocking library is Moq, used via <see cref="MoqMocker"/>. </item>
+        /// <item><strong>Note that your test project still needs a project reference to Moq or your chosen mocking library</strong> in order to create mocks.</item>
+        /// </list>
+        /// </remarks>
+        public IMockingLibraryBasicAdapter MockingLibraryAdapter { get; set; }
+
         public BuildFromMockAttribute(Type typeToMock, params object[] mockConstructorArgs)
         {
-            this.typeToMock = typeToMock;
-            this.knownMockingFrameworkAdapters = new IAutoBuildCustomCreateRule[]{ new BuildFromMoqAttribute(typeToMock, mockConstructorArgs) };
+            this.mockConstructorArgs = mockConstructorArgs;
+            typesToMock = new [] { typeToMock};
         }
 
-        public BuildFromMockAttribute(params Type[] typesToMock) { }
-
-        public object CreateInstance(Type type, IEnumerable<Type> theStackOfTypesToBuild, object requestedBy)
+        public BuildFromMockAttribute(params Type[] typesToMock)
         {
-            if(type != typeToMock) { return null;}
-            //
-            return
-                knownMockingFrameworkAdapters
-                    .Select(a => a.CreateInstance(type, theStackOfTypesToBuild, requestedBy))
-                    .FirstOrDefault();
+            this.typesToMock = typesToMock;
+            this.mockConstructorArgs = new object[0];
         }
 
-        readonly IAutoBuildCustomCreateRule[] knownMockingFrameworkAdapters;
-        readonly Type typeToMock;
-    }
-
-    public class BuildFromMoqAttribute : Attribute, IAutoBuildCustomCreateRule
-    {
-        public BuildFromMoqAttribute(Type typeToMock, params object[] mockConstructorArgs)
+        /// <summary>
+        /// Note that using this overload means that the same list of <paramref name="mockConstructorArgs"/> will be used for all mocked types.
+        /// </summary>
+        /// <param name="typesToMock"></param>
+        /// <param name="mockConstructorArgs"></param>
+        public BuildFromMockAttribute(Type[] typesToMock, params object[] mockConstructorArgs)
         {
-            this.typeToMock = typeToMock;
+            this.typesToMock = typesToMock;
             this.mockConstructorArgs = mockConstructorArgs;
         }
 
-        public object CreateInstance(Type type, IEnumerable<Type> theStackOfTypesToBuild, object requestedBy)
+        public object CreateInstance(Type type, IEnumerable<Type> typesWaitingToBeBuilt, object originalRequestor)
         {
-            if(type != typeToMock) { return null;}
+            if(!typesToMock.Contains(type)) { return null;}
             //
-            var requiredMockType = MockerType?.MakeGenericType(type);
-            var mockObjectProp = requiredMockType?.GetProperty("Object", BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
-            if(mockObjectProp == null) { return null; }
-            //
-            try
-            {
-                var mock = Activator.CreateInstance(requiredMockType, mockConstructorArgs );
-                return mockObjectProp.GetValue(mock);
-            } catch {
-                return null;
-            }
+            EnsureMockingLibraryAdapter();
+            MockingLibraryAdapter.EnsureMockingAssemblyIsLoadedAndWorkingElseThrow();
+            return MockingLibraryAdapter.CreateMockElseNull(type, mockConstructorArgs);
         }
 
-        readonly Type typeToMock;
+        void EnsureMockingLibraryAdapter() { MockingLibraryAdapter = MockingLibraryAdapter ?? new MoqMocker(); }
+
+        readonly Type[] typesToMock;
         readonly object[] mockConstructorArgs;
-
-        public static object GetMoqMock(object value)
-        {
-            return MockType?.GetMethod("Get").Invoke(null, new[] { value });
-        }
-
-        /// <summary>
-        /// The Type with name Moq.Mock`1 from which we can create a Mock&lt;T&gt;
-        /// </summary>
-        protected static Type MockerType
-        {
-            get { return mockerType = mockerType ?? new FindInAssemblyAttribute("Moq").FindTypeAssignableTo("Moq.Mock`1"); }
-        }
-
-        /// <summary>
-        /// The Type with name Moq.Mock from which we can invoke Moq.Mock.Get(object)
-        /// </summary>
-        protected static Type MockType { get { return mockType = mockType ?? new FindInAssemblyAttribute("Moq").FindTypeAssignableTo("Moq.Mock"); } }
-
-        static Type mockerType;
-        static Type mockType;
     }
 }
