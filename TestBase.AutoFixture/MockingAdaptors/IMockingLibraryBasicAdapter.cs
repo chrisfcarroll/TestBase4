@@ -5,7 +5,7 @@ namespace TestBase
 {
     /// <summary>
     /// Used by <see cref="BuildFromMockAttribute"/> rule to create mocks using the specified mocking library.  
-    /// Moq is the default mocking library, and <see cref="MoqMocker"/> is the defalt adapter. 
+    /// Moq is the default mocking library, and <see cref="MoqMocker"/> is the default adapter. 
     /// Note however that TestBase does not have a dependency on Moq;
     /// in order to use Moq or a different mocking library in your tests, you should include a reference to it in your test project.
     /// </summary>
