@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestBase</RootNamespace>
     <AssemblyName>TestBase.AutoBuild</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -44,8 +44,9 @@
     <Compile Include="AutoBuildFindTypeRuleAttribute.cs" />
     <Compile Include="BuildFromFactoryAttribute.cs" />
     <Compile Include="BuildFromMockAttribute.cs" />
-    <Compile Include="MockingAdaptors\IMockingLibraryBasicAdapter.cs" />
-    <Compile Include="MockingAdaptors\IMockingLibraryInspectionAdapter.cs" />
+    <Compile Include="MockingAdaptors\EnsureElseThrowExtensions.cs" />
+    <Compile Include="MockingAdaptors\IMockingLibraryAdapter.cs" />
+    <Compile Include="MockingAdaptors\IMockingLibraryAdapterWithInspections.cs" />
     <Compile Include="MockingAdaptors\MoqMocker.cs" />
     <Compile Include="ChooseConstructorWithFewestParametersAttribute.cs" />
     <Compile Include="ChooseConstructorWithMostParametersAttribute.cs" />

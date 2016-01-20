@@ -1,11 +1,11 @@
 using System;
 using System.IO;
-using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 
 namespace TestBase
 {
-    public class MoqMocker : IMockingLibraryBasicAdapter, IMockingLibraryInspectionAdapter
+    public class MoqMocker : IMockingLibraryAdapter, IMockingLibraryAdapterWithInspections
     {
         public object CreateMockElseNull(Type type, params object[] mockConstructorArgs)
         {
@@ -14,19 +14,37 @@ namespace TestBase
 
         public object CreateMockElseThrow(Type type, params object[] mockConstructorArgs)
         {
-            var requiredMockType = MockerType?.MakeGenericType(type);
-            var mockedObjectProperty = requiredMockType?.GetProperty("Object", BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
-            var mock = Activator.CreateInstance(requiredMockType, mockConstructorArgs);
-            return mockedObjectProperty.GetValue(mock);
+            try
+            {
+                mockType = MockerType
+                    .MakeGenericType(type)
+                    .Ensure(t => t != null, "Failed to make the Moq<T> GenericType needed to mock T. Just got null.");
+                var mock = Activator
+                    .CreateInstance(mockType, mockConstructorArgs)
+                    .EnsureNotNull(string.Format("Activator.CreateInstance({0},{1}) failed, just got null",
+                                                 mockType.Name,
+                                                 mockConstructorArgs));
+
+                var mockedObjectProperty = mockType
+                    .GetProperty("Object", BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance)
+                    .EnsureNotNull(string.Format("Reflected call to Moq<{0}>.GetProperty(\"Object\") failed, just got null.", type.FullName));
+
+                return mockedObjectProperty.GetValue(mock,null).EnsureNotNull("Reflected call to Moq<{0}>.Object failed, just got null.");
+            }
+            catch (Exception)
+            {
+                throw new Exception(typeof(MoqMocker).FullName + string.Format(" failed to create a Moq<{0}>", type.FullName));
+            }
         }
+
 
         public void EnsureMockingAssemblyIsLoadedAndWorkingElseThrow()
         {
             if(!IsMockingAssemblyFound())
             {
                 throw new FileNotFoundException(
-                    $"Unable to find a Moq.dll having a Moq.Mock`1 Type in directory {AppDomain.CurrentDomain.BaseDirectory}. " +
-                    "Moq is most easily loaded by added a NuGet dependency to it from your Test project. ",
+                    string.Format("Unable to find a Moq.dll with a Moq.Mock`1 Type in BaseDirectory {0}. ", AppDomain.CurrentDomain.BaseDirectory) +
+                    "Moq is most easily added a NuGet dependency to it from your Test project. ",
                     "Moq.dll");
             }
             CreateMockElseThrow(typeof(ICloneable /*an arbitrary example type that, if all is well, we will successfully mock.*/ ));
@@ -38,9 +56,8 @@ namespace TestBase
 
         public object GetMock(object value)
         {
-            return (mockType = mockType ?? new FindInAssemblyAttribute("Moq").FindTypeAssignableTo("Moq.Mock"))
-                        ?.GetMethod("Get")
-                        .Invoke(null, new[] { value });
+            EnsureMockingAssemblyIsLoadedAndWorkingElseThrow();
+            return MockerType.GetMethod("Get",BindingFlags.Public|BindingFlags.Static).Invoke(null, new[] { value });
         }
 
         public static Type MockerType { get { return mockerType = mockerType ?? new FindInAssemblyAttribute("Moq").FindTypeAssignableTo("Moq.Mock`1"); } }

@@ -21,7 +21,9 @@ namespace TestBase
 
         static Type FindTypeAssignableTo(object testFixtureType, Func<Type, bool> filterBy)
         {
-            return testFixtureType?.GetType().Assembly.GetTypes().FirstOrDefault(filterBy);
+            if (testFixtureType == null) { return null;}
+            //
+            return testFixtureType.GetType().Assembly.GetTypes().FirstOrDefault(filterBy);
         }
     }
 }

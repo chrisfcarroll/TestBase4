@@ -13,7 +13,7 @@ namespace TestBase
         /// <item><strong>Note that your test project still needs a project reference to Moq or your chosen mocking library</strong> in order to create mocks.</item>
         /// </list>
         /// </remarks>
-        public IMockingLibraryBasicAdapter MockingLibraryAdapter { get; set; }
+        public IMockingLibraryAdapter MockingLibraryAdapter { get; set; }
 
         public BuildFromMockAttribute(Type typeToMock, params object[] mockConstructorArgs)
         {

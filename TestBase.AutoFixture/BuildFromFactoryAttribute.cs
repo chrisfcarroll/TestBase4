@@ -54,7 +54,7 @@ namespace TestBase
             //
             object factory = originalRequestor ?? AutoBuild.InstanceOf(factoryClass,DefaultRulesAttribute.DefaultFindTypeRuleSequence.Union<IAutoBuildRule>(new[] {new ChooseConstructorWithFewestParametersAttribute()})); //nb if the factory method is static, then it's okay for factory to be null.
 
-            Type factoryClassToUse = factory?.GetType()??factoryClass;
+            Type factoryClassToUse =   factory==null ? factoryClass : factory.GetType();
 
             var m = EnsureFactoryMethodElseThrow(factoryClassToUse, originalRequestor);
             //
@@ -77,7 +77,7 @@ namespace TestBase
             }
             if(!m.ReturnType.IsAssignableFrom(targetTypeToBuild))
             {
-                throw new ArgumentOutOfRangeException(nameof(targetTypeToBuild),
+                throw new ArgumentOutOfRangeException(targetTypeToBuild.FullName,
                                                       string.Format(ReturnTypeNotAssignableToTargetFormat,
                                                                     targetTypeToBuild,
                                                                     factoryClassToUse,

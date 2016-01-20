@@ -1,15 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using NUnit.Framework;
 using TestBase;
 using TestBase4.TestCases;
 
 namespace TestBase4.Specifications.AutoBuild_WhenBuildingAnInstance
 {
-    public class PreRequisiteAttribute : TestAttribute { }
-
     [TestFixture]
     public class Given_BuildFromMockRule__And_Moqdll_IsFindable
     {
@@ -21,7 +17,7 @@ namespace TestBase4.Specifications.AutoBuild_WhenBuildingAnInstance
             Assert.IsNotNull(moq,"Didn't find a known mock framework (i.e. Moq) in Base Directory, can't test mocking.");
         }
 
-        [Test]
+        [Test,Ignore("WIP")]
         public void ThenI_UseIt_WhenBuildingAClass()
         {
             var result =
